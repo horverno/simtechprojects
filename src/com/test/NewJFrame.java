@@ -67,7 +67,7 @@ public class NewJFrame extends javax.swing.JFrame {
     
     @SuppressWarnings("unchecked")
     private void initComponents() {
- /**/
+    	
     	jDiagram = new JButton();
     	jRead = new JButton();
     	jColor = new JButton();
