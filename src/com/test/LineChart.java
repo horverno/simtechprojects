@@ -27,8 +27,6 @@ import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 import org.jfree.util.Rotation;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import com.google.gson.Gson;
 
@@ -43,17 +41,15 @@ public class LineChart extends JFrame {
 	private Color color;
 	private int db;
 	private String fileName;
-	private List<XYDataItem> fromFileList;
+	private List<MeasurementItem> list;
     /**
      * Creates a new demo.
      *
      * @param title  the frame title.
      */
-    public LineChart(final String title,int db_, String file, List<XYDataItem> asd) {
+    public LineChart(final String title, List<MeasurementItem> asd) {
         super(title);
-        fromFileList = asd;
-        fileName=file;
-        db=db_;
+        list = asd;
         color =Color.GREEN;
         
         
@@ -84,7 +80,7 @@ public class LineChart extends JFrame {
         
     	final XYSeries series1 = new XYSeries("First");
     	
-    	if(fromFileList== null){
+    	if(list== null){
 	        series1.add(1.0, 1.0);
 	        series1.add(2.0, 4.0);
 	        series1.add(3.0, 3.0);
@@ -95,52 +91,13 @@ public class LineChart extends JFrame {
 	        series1.add(8.0, 8.0);
 
     	}else{
-    		for(int i=0;i<fromFileList.size();i++){
-    			series1.add(fromFileList.get(i).getX(),fromFileList.get(i).getY());
+    		for(int i=0;i<list.size();i++){
+    			series1.add(list.get(i).timeStamp,list.get(i).value);
     		}
     	}
     	final XYSeriesCollection dataset = new XYSeriesCollection();
         dataset.addSeries(series1);
 
-                
-        /******/
-        JSONObject obj = new JSONObject();
-        obj.put("Name", "LineChart");
- 
-        Gson gson = new Gson();
-        String numbersJSON = gson.toJson(series1.getItems());
-        obj.put("DataList",numbersJSON);
- 
-        FileWriter file = null;
-		try {
-			file = new FileWriter(fileName);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-        try {
-            file.write(obj.toJSONString());
-            System.out.println("Successfully Copied JSON Object to File...");
-            System.out.println("\nJSON Object: " + obj);
- 
-        } catch (IOException e) {
-            e.printStackTrace();
- 
-        } finally {
-            try {
-				file.flush();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-            try {
-				file.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
-        /*******/
         
         return dataset;
         

@@ -5,37 +5,18 @@
 package com.test;
 
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.FileReader;
+import java.io.File;
 import java.util.List;
-
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.JFileChooser;
 import javax.swing.JTextField;
-
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.jfree.chart.ChartPanel;
-import org.jfree.data.xy.XYDataItem;
-import org.jfree.data.xy.XYSeries;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 
 
@@ -68,6 +49,72 @@ public class NewJFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     private void initComponents() {
     	
+    	
+    	
+    	JButton saveButton = new JButton("Save");
+
+		saveButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				// Saving generated JSON
+				FileNameExtensionFilter filter = new FileNameExtensionFilter(
+						"JSON file", "json");
+
+				JFileChooser saveFileChooser = new JFileChooser();
+				saveFileChooser.addChoosableFileFilter(filter);
+				saveFileChooser.setFileFilter(filter);
+				saveFileChooser.setSelectedFile(new File(".json"));
+				
+				// Demonstrate "Save" dialog:
+				int rVal = saveFileChooser.showSaveDialog(NewJFrame.this);
+				if (rVal == JFileChooser.APPROVE_OPTION) {
+				
+					JSONParser.getInstance().dataToJSON(
+							MeasurementHandler.getInstance().getMathResult(),   //getMathResult
+							saveFileChooser.getSelectedFile());
+				}
+				if (rVal == JFileChooser.CANCEL_OPTION) {
+					System.out.println("Cancel");
+				}
+
+			}
+		});
+
+		JButton loadButton = new JButton("Load");
+
+		loadButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				// Loading JSON
+				List<MeasurementItem> list = null;
+
+				FileNameExtensionFilter filter = new FileNameExtensionFilter(
+						"JSON file", "json");
+
+				JFileChooser loadFileChooser = new JFileChooser();
+				loadFileChooser.addChoosableFileFilter(filter);
+				loadFileChooser.setFileFilter(filter);
+				loadFileChooser.setSelectedFile(new File(".json"));
+
+				int rVal = loadFileChooser.showOpenDialog(NewJFrame.this);
+				if (rVal == JFileChooser.APPROVE_OPTION) {
+					 list = JSONParser.getInstance()
+							.getDataFromJSON(loadFileChooser.getSelectedFile());
+					System.out.println(list.toString());
+				}
+				if (rVal == JFileChooser.CANCEL_OPTION) {
+					System.out.println("Cancel");
+				}
+				
+				 jPanel1.setLayout(new java.awt.BorderLayout());
+	             demo = new LineChart("Line Chart Demo 6",list);
+	             jPanel1.add(new ChartPanel(demo.getChart()));
+	             jPanel1.validate();
+
+			}
+		});
+    	
+    	
     	jDiagram = new JButton();
     	jRead = new JButton();
     	jColor = new JButton();
@@ -82,16 +129,6 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
         
-        jRead.setText("Read");
-        jRead.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            
-                jPanel1.setLayout(new java.awt.BorderLayout());
-                demo = new LineChart("Line Chart Demo 6",3,jText.getText()+".txt",getDataFromJSON());
-                jPanel1.add(new ChartPanel(demo.getChart()));
-                jPanel1.validate();
-            }
-        });
         
         
         jColor.setText("Color");
@@ -113,7 +150,6 @@ public class NewJFrame extends javax.swing.JFrame {
        
         
         
-        jText = new JTextField("Elso",20);
 
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -136,9 +172,9 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(jDiagram)
                 .addGap(24, 24, 24)
-                .addComponent(jText)
+                .addComponent(loadButton)
                 .addGap(24, 24, 24)
-                .addComponent(jRead)
+                .addComponent(saveButton)
                 .addGap(24, 24, 24)
                 .addComponent(jColor)
                 .addGap(24, 24, 24))
@@ -156,11 +192,11 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addGap(128, 128, 128))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(149, Short.MAX_VALUE)
-                .addComponent(jText)
-                .addGap(128, 128, 128))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(saveButton)
+                .addGap(100, 128, 128))
+             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(149, Short.MAX_VALUE)
-                .addComponent(jRead)
+                .addComponent(loadButton)
                 .addGap(100, 128, 128))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -170,12 +206,19 @@ public class NewJFrame extends javax.swing.JFrame {
 
         pack();
         
+        /**Kirajzolja a diagramot, null helyére (2.sor!) az adatok kell beírni (getMathResult!!!).... **/
+        jPanel1.setLayout(new java.awt.BorderLayout());
+        demo = new LineChart("Line Chart Demo 6",null);
+        jPanel1.add(new ChartPanel(demo.getChart()));
+        jPanel1.validate();
+        /*****/
+        
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed      
     	
            jPanel1.setLayout(new java.awt.BorderLayout());
-           demo = new LineChart("Line Chart Demo 6",3,jText.getText()+".txt",null);
+           demo = new LineChart("Line Chart Demo 6",null);
            jPanel1.add(new ChartPanel(demo.getChart()));
            jPanel1.validate();
            
@@ -219,32 +262,6 @@ public class NewJFrame extends javax.swing.JFrame {
     }
     
     
-    private List<XYDataItem> getDataFromJSON(){
-    	
-    	 JSONParser parser = new JSONParser();
-    	 List<XYDataItem> adat = null;
-         try {
-             Object obj = parser.parse(new FileReader(
-                     jText.getText()+".txt"));
-  
-             JSONObject jsonObject = (JSONObject) obj;
-  
-             String name = (String) jsonObject.get("Name");
-             String numbers = (String) jsonObject.get("DataList");
-             
-             Gson gson = new Gson();
-             adat = gson.fromJson(numbers,new TypeToken<List<XYDataItem>>(){}.getType());
-             
-             System.out.println("Read");
-             System.out.println("Name: " + name);
-             System.out.println("\nCompany List:"+adat.toString());
-
-  
-         } catch (Exception e) {
-             e.printStackTrace();
-         }
-		return adat;
-    }
     
    
 }
