@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Input", "WindowsFormsApplication1\Input.csproj", "{EA775A5F-B0A4-45DD-B0D8-DDA264DA770A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Output_plot", "Output_plot\Output_plot.csproj", "{A2E2A857-F79E-4002-A558-6077C5DB556A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mathematics", "Math\Mathematics.csproj", "{6BCC7614-F7AC-4081-A6EE-D2F8C45E22F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA775A5F-B0A4-45DD-B0D8-DDA264DA770A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA775A5F-B0A4-45DD-B0D8-DDA264DA770A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA775A5F-B0A4-45DD-B0D8-DDA264DA770A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA775A5F-B0A4-45DD-B0D8-DDA264DA770A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2E2A857-F79E-4002-A558-6077C5DB556A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2E2A857-F79E-4002-A558-6077C5DB556A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2E2A857-F79E-4002-A558-6077C5DB556A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2E2A857-F79E-4002-A558-6077C5DB556A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BCC7614-F7AC-4081-A6EE-D2F8C45E22F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BCC7614-F7AC-4081-A6EE-D2F8C45E22F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BCC7614-F7AC-4081-A6EE-D2F8C45E22F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BCC7614-F7AC-4081-A6EE-D2F8C45E22F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
