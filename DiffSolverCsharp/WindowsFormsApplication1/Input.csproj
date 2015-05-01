@@ -87,10 +87,6 @@
       <Project>{6bcc7614-f7ac-4081-a6ee-d2f8c45e22f9}</Project>
       <Name>Mathematics</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Output_plot\Output_plot.csproj">
-      <Project>{a2e2a857-f79e-4002-a558-6077c5db556a}</Project>
-      <Name>Output_plot</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
