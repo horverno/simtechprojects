@@ -1,0 +1,15 @@
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\bin\Release\PIF input.exe
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\bin\Release\PIF input.pdb
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\obj\x86\Release\MainWindow.baml
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\obj\x86\Release\window2.baml
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\obj\x86\Release\MainWindow.g.cs
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\obj\x86\Release\window2.g.cs
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\obj\x86\Release\App.g.cs
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\obj\x86\Release\PIF input_MarkupCompile.cache
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\obj\x86\Release\PIF input.g.resources
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\obj\x86\Release\beadando.Properties.Resources.resources
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\obj\x86\Release\PIF input.exe
+C:\Documents and Settings\Ádám\dokumentumok\visual studio 2010\Projects\PIF input\PIF input\obj\x86\Release\PIF input.pdb

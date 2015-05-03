@@ -1,0 +1,5 @@
+D:\Projects\Szimtech\DiffSolverCsharp\PiffTeamSolution\PiffTeam\bin\Debug\PiffTeam.dll
+D:\Projects\Szimtech\DiffSolverCsharp\PiffTeamSolution\PiffTeam\bin\Debug\PiffTeam.pdb
+D:\Projects\Szimtech\DiffSolverCsharp\PiffTeamSolution\PiffTeam\obj\Debug\PiffTeam_Math.csprojResolveAssemblyReference.cache
+D:\Projects\Szimtech\DiffSolverCsharp\PiffTeamSolution\PiffTeam\obj\Debug\PiffTeam.dll
+D:\Projects\Szimtech\DiffSolverCsharp\PiffTeamSolution\PiffTeam\obj\Debug\PiffTeam.pdb

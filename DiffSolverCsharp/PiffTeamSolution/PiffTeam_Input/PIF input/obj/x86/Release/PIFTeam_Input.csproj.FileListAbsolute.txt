@@ -1,0 +1,11 @@
+C:\Users\Márk\Downloads\PIF-input (1)\PIF input\PIF input\obj\x86\Release\MainWindow.baml
+C:\Users\Márk\Downloads\PIF-input (1)\PIF input\PIF input\obj\x86\Release\window2.baml
+C:\Users\Márk\Downloads\PIF-input (1)\PIF input\PIF input\obj\x86\Release\MainWindow.g.cs
+C:\Users\Márk\Downloads\PIF-input (1)\PIF input\PIF input\obj\x86\Release\window2.g.cs
+C:\Users\Márk\Downloads\PIF-input (1)\PIF input\PIF input\obj\x86\Release\App.g.cs
+C:\Users\Márk\Downloads\PIF-input (1)\PIF input\PIF input\obj\x86\Release\PIF input_MarkupCompile.cache
+C:\Users\Márk\Downloads\PIF-input (1)\PIF input\PIF input\obj\x86\Release\PIF input.g.resources
+C:\Users\Márk\Downloads\PIF-input (1)\PIF input\PIF input\obj\x86\Release\PiffTeam.Properties.Resources.resources
+C:\Users\Márk\Downloads\PIF-input (1)\PIF input\PIF input\obj\x86\Release\PIFTeam_Input.csproj.GenerateResource.Cache
+C:\Users\Márk\Downloads\PIF-input (1)\PIF input\PIF input\obj\x86\Release\PIF input.exe
+C:\Users\Márk\Downloads\PIF-input (1)\PIF input\PIF input\obj\x86\Release\PIF input.pdb

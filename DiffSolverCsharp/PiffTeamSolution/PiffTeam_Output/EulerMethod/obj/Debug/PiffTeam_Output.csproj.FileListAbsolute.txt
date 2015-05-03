@@ -1,0 +1,15 @@
+C:\Users\Márk\Downloads\output\output\EulerMethod\bin\Debug\Output.exe.config
+C:\Users\Márk\Downloads\output\output\EulerMethod\bin\Debug\Output.exe
+C:\Users\Márk\Downloads\output\output\EulerMethod\bin\Debug\Output.pdb
+C:\Users\Márk\Downloads\output\output\EulerMethod\bin\Debug\PiffTeam.dll
+C:\Users\Márk\Downloads\output\output\EulerMethod\bin\Debug\PiffTeam.pdb
+C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Debug\PiffTeam_Output.csprojResolveAssemblyReference.cache
+C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Debug\MainWindow.baml
+C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Debug\MainWindow.g.cs
+C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Debug\App.g.cs
+C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Debug\Output_MarkupCompile.cache
+C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Debug\Output.g.resources
+C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Debug\PiffTeam.Properties.Resources.resources
+C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Debug\PiffTeam_Output.csproj.GenerateResource.Cache
+C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Debug\Output.exe
+C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Debug\Output.pdb

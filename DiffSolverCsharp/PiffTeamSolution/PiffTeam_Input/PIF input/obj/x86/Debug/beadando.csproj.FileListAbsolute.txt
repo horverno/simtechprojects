@@ -1,0 +1,15 @@
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\bin\Debug\beadando.exe
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\obj\x86\Debug\leibniz.baml
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\obj\x86\Debug\MainWindow.baml
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\obj\x86\Debug\leibniz.g.cs
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\obj\x86\Debug\MainWindow.g.cs
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\obj\x86\Debug\App.g.cs
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\obj\x86\Debug\beadando_MarkupCompile.cache
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\obj\x86\Debug\beadando.g.resources
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\obj\x86\Debug\beadando.Properties.Resources.resources
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\obj\x86\Debug\beadando.exe
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\obj\x86\Debug\beadando.pdb
+C:\Documents and Settings\Ádám\Local Settings\Application Data\Temporary Projects\beadando\bin\Debug\beadando.pdb
