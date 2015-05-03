@@ -26,3 +26,5 @@ C:\Users\Márk\Desktop\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF inpu
 C:\Users\Márk\Desktop\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PIF input.g.resources
 C:\Users\Márk\Desktop\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PiffTeam.Properties.Resources.resources
 C:\Users\Márk\Desktop\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PIFTeam_Input.csproj.GenerateResource.Cache
+d:\Projects\DiffSolverCsharp\simtechprojects\trunk\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PIF input.exe
+d:\Projects\DiffSolverCsharp\simtechprojects\trunk\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PIF input.pdb

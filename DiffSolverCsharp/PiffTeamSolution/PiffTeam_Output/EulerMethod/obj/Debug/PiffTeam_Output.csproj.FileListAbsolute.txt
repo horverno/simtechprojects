@@ -13,3 +13,6 @@ C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Debug\PiffTeam.Properties
 C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Debug\PiffTeam_Output.csproj.GenerateResource.Cache
 C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Debug\Output.exe
 C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Debug\Output.pdb
+d:\Projects\DiffSolverCsharp\simtechprojects\trunk\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Output\EulerMethod\bin\Debug\Output.exe.config
+d:\Projects\DiffSolverCsharp\simtechprojects\trunk\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Output\EulerMethod\obj\Debug\Output.exe
+d:\Projects\DiffSolverCsharp\simtechprojects\trunk\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Output\EulerMethod\obj\Debug\Output.pdb

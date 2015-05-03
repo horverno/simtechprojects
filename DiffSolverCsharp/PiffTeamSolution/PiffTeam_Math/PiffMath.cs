@@ -8,6 +8,7 @@ namespace PiffTeam
 {
     public class MyMath
     {
+        private delegate double Function(double t, double y); //Ha kétváltozós a fv. y'=f(t,y) akkor kellet t is.
         private static double startY; //Kezdőérték f(0)
         private static double startTime; //Kezdeti időpont x(0)
         private static double endTime; //Meddig fusson a szimuláció 
@@ -17,11 +18,12 @@ namespace PiffTeam
         //2 - adaptív
         //3 - implicit
 
-        private Function f;
+        private Function f; //A kapott derivált függvény 
         private static double step; //Lépésköz (deltaT)
         private static double[] xCoordinates; // A lépéseket tartalmazó tömb
         private static double[] yCoordinates; // Az y értékeket tartalmazó tömb
 
+        
         public double Step
         {
             get
@@ -34,14 +36,14 @@ namespace PiffTeam
                 xCoordinates = GetStep(startTime, endTime, step);
                 Calculate();
             }
-        }
+        } //A lépésköz beállítása, mely hatására az osztály újraszámolja az x illetve az y értékeket is automatikusan
         public double[] Y
         {
             get
             {
                 return yCoordinates;
             }
-        }
+        } //Az y koordinátákat tartalmazó tömb(yCoordinates) elérése osztályon kívülről
 
         public double[] X
         {
@@ -49,9 +51,9 @@ namespace PiffTeam
             {
                 return xCoordinates;
             }
-        }
+        }//Az x koordinátákat tartalmazó tömb(xCoordinates) elérése osztályon kívülről
         //A bemeneti függvény
-        public delegate double Function(double x, double y);
+
 
         /// <summary>
         /// X értékeket tartalmazó tömböt ad vissza, mely startól-finishig interval lépésközzel tartalmazza az értékeket.
@@ -66,8 +68,8 @@ namespace PiffTeam
             if (interval <= 0) throw new ArgumentException("Az lépésköznek nagyobbnak kell lennie mint 0");
 
             double[] xCoordinates = new double[(int)((finish - start) / interval) + 1];
-            int digits = 7;
-            interval = Math.Round(interval, 7);
+            int digits = 5;
+            interval = Math.Round(interval, 5);
 
             //double actual = start;
             xCoordinates[0] = start;
@@ -80,8 +82,26 @@ namespace PiffTeam
             xCoordinates[xCoordinates.Length - 1] = finish;
             return xCoordinates;
         } //Lépések kiszámolása
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_starttime">A szimuláció kezdőidőpontja >0</param>
+        /// <param name="_endtime">A szimláció befejezésének időpontja, nagyobb mint a kezdőidőpont</param>
+        /// <param name="_starty">A szimuláció kezdeti pillanatában a kezdőérték</param>
+        /// <param name="_step">A kezdeti lépésköz</param>
+        /// <param name="_f">A differenciálegyenlet</param>
+        /// <param name="_diffType">A megoldás típusa 0-3 közötti szám</param>
         public MyMath(double _starttime, double _endtime, double _starty, double _step, Function _f, int _diffType)
         {
+            /*Argumentum kivétel dobása, ha 
+             * a kezdőidőpont kisebb mint 0 
+             * a befejezés időpontja kisebb mint a kezdőidőpont
+             * a megoldás típusa nem lehetséges érték
+             * ha a lépésköz nagyobb mint a befejezés és kezdőidőpont között eltelt idő
+            */
+            if (_starttime < 0 || _endtime < _starttime || 
+                diffType < 0 || diffType > 3 || step>_endtime-_starttime) throw new ArgumentException("Rossz paraméterek");
+            //Értékek beállítása, majd a lépésköz alapján az x értékek kiszámítása
             startY = _starty;
             startTime = _starttime;
             endTime = _endtime;
@@ -179,6 +199,50 @@ namespace PiffTeam
             }
         }
 
+        //
+        //Tesztfüggvények
+        //
+        public void TestRunge()
+        {
+            setDefault();
+            runge(testfv);
+        }
+
+        public void TestEuler()
+        {
+            setDefault();
+            eulerMethod(testfv);
+        }
+
+        public void TestImplicitEuler()
+        {
+            setDefault();
+            implicitEulerMethod(testfv);
+        }
+
+        public void TestExplicitEueler()
+        {
+            setDefault();
+            explicitRungeKutta(testfv);
+        }
+
+        private void setDefault()
+        {
+            GetStep(0, 5, .01f);
+            startTime = 0;
+            endTime = 5;
+            startY = 1;
+            step = .01f;
+        }
+
+        private double testfv(double t, double y)
+        {
+            return -y + t + 1;
+        }
+
+        //
+        //Tesztfüggvények vége
+        //
 
 
     }
