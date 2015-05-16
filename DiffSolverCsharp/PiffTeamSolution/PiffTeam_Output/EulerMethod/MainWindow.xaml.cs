@@ -19,19 +19,18 @@ namespace PiffTeam
 
     public partial class MainWindow : Window
     {
-        static float[,,] xCoordinates=new float[3,2,200001]; // A lépéseket tartalmazó tömb - 1. fgv sorszam 2. x - y azonosító 3. x - y érték
+        static float[,,] Coords=new float[3,3,3001]; // A lépéseket tartalmazó tömb - 1. fgv sorszam 2. x - y azonosító 3. x - y érték
 
         const float T0 = 100f; // kezdőérték
         const float TR = 20f; // külső hőmérséklet
         const float k = 0.07f; // hűlési konstans
         readonly static float Zoom = 5;
-        const int n = 130;
+        const int n = 130;               
         static int co = -1, nr = 0;
    
         public MainWindow()
         {
             InitializeComponent();
-            DisplayScale();
         }
 
         public delegate float func(float t);
@@ -46,82 +45,75 @@ namespace PiffTeam
         /// <param name="h">dettaT</param>
         /// <param name="co">aktuális szín</param>
 
-        public void Euler(func f, float y, int n, float h)
+        public void Euler(func f, float y, int n, float h, int co)
         {
-            string TextName = TxtSaveBox.Text;
-            StreamWriter sw = new StreamWriter(TextName, true);
              nr = 0; // ciklusvaltozo, X eredményé
-             if (co == 2) co = -1; // ciklusvaltozo, a kirajzolt fgv azosítója >> színe
-             co++;
-            sw.WriteLine("Fuggveny szam:" + co);
 
-            if (co == 0) l1check.IsChecked=true;
-            if (co == 1) l2check.IsChecked=true;
-            if (co == 2) l3check.IsChecked=true;
-            
             for (float x = 0; x <= n; x += h){          
-                try
-            {sw.WriteLine("\t" + x + "\t" + y + "\t" + nr);}
-            catch (Exception e)
-            {Console.WriteLine("Exception: " + e.Message);}
-           
-              xCoordinates[co,0,nr]=(float)x;
-              xCoordinates[co,1,nr]=(float)y;                
         
+              Coords[co,0,nr]=(float)x;
+              Coords[co,1,nr]=(float)y;
+              Coords[co,2,nr]=(float)nr;        
+
                 System.Diagnostics.Debug.WriteLine("\t" + x + "\t" + y + "\t" + nr);
                 y += h * f(y);
 
-                Draw(xCoordinates[co, 0, nr], xCoordinates[co, 1, nr], co);    // pontok (2 széles vonalak) hozzáadása a rajzhoz (x,y) koordináta rendszerben
-                nr++; }          
-            sw.Close();}
+                nr++; }
+            }
 
-        public void Draw( float x, float y, int co)
-        {
-            if (co == 0 && l1check.IsEnabled == true)   // co azt azonosítja hogy draw button katt esetén melyik szín jön most, X
-                                                        // enbabled: pipa kivétel esetén el kellene tünjön(mindet újra rajzolva kivéve disabled-et)
-//               if (l1check.IsEnabled == true )
-            {
-                canvEuler.Children.Add(new Line
+        public void Draw()
+        {       // co azt azonosítja hogy draw button katt esetén melyik szín jön most, X
+                // enbabled: pipa kivétel esetén el kellene tünjön(mindet újra rajzolva kivéve disabled-et)
+            if (l1check.IsChecked == true)
                 {
-                    Stroke = System.Windows.Media.Brushes.DarkBlue,
-                    StrokeThickness = 4,
-                    X1 = (int)Zoom * x + 50, // a 20 azért kell, hogy elférjen a skála
-                    Y1 = (int)Zoom * (T0 - y),
-                   X2 = (int)Zoom * x + 2 + 50, // a 20 azért kell, hogy elférjen a skála, a 2 pedig, hogy legyen kiterjedése a vonalnak
-                    Y2 = (int)Zoom * (T0 - y) + 2
-                });
-            }
-            if (co == 1 && l2check.IsEnabled == true)
-          //  if (l2check.IsEnabled == true)
-               {
-                canvEuler.Children.Add(new Line
+                    for (int x = 0; x == Coords[0, 2, x]; x++) //  végig megy az elemeken, sorszám szerint
+                    {
+                        canvEuler.Children.Add(new Line
+                        {
+                            Stroke = System.Windows.Media.Brushes.DarkBlue,
+                            StrokeThickness = 4,
+                            X1 = (int)Zoom * Coords[0, 0, x] + 50, // a 50 azért kell, hogy elférjen a skála
+                            Y1 = (int)Zoom * (T0 - Coords[0, 1, x]),
+                            X2 = (int)Zoom * Coords[0, 0, x] + 2 + 50, // a 50 azért kell, hogy elférjen a skála, a 2 pedig, hogy legyen kiterjedése a vonalnak
+                            Y2 = (int)Zoom * (T0 - Coords[0, 1, x]) + 2
+                        });
+                    }
+                }
+            if (l2check.IsChecked == true)
                 {
-                    Stroke = System.Windows.Media.Brushes.DarkGreen,
-                    StrokeThickness = 4,
-                    X1 = (int)Zoom * x + 50, // a 20 azért kell, hogy elférjen a skála
-                    Y1 = (int)Zoom * (T0 - y),
-                    X2 = (int)Zoom * x + 2 + 50, // a 20 azért kell, hogy elférjen a skála, a 2 pedig, hogy legyen kiterjedése a vonalnak
-                    Y2 = (int)Zoom * (T0 - y) + 2
-                });
-            }
-          // if (l3check.IsEnabled == true )
-               if (co == 2 && l3check.IsEnabled == true)
-           {
-                canvEuler.Children.Add(new Line
+                    for (int x = 0; x == Coords[1, 2, x]; x++)
+                    {
+                        canvEuler.Children.Add(new Line
+                        {
+                            Stroke = System.Windows.Media.Brushes.DarkGreen,
+                            StrokeThickness = 4,
+                            X1 = (int)Zoom * Coords[1, 0, x] + 50,
+                            Y1 = (int)Zoom * (T0 - Coords[1, 1, x]),
+                            X2 = (int)Zoom * Coords[1, 0, x] + 2 + 50,
+                            Y2 = (int)Zoom * (T0 - Coords[1, 1, x]) + 2
+                        });
+                    }
+                }
+            if (l3check.IsChecked == true)
                 {
-                    Stroke = System.Windows.Media.Brushes.DarkRed,
-                    StrokeThickness = 4,
-                    X1 = (int)Zoom * x + 50, // a 20 azért kell, hogy elférjen a skála
-                    Y1 = (int)Zoom * (T0 - y),
-                    X2 = (int)Zoom * x + 2 + 50, // a 20 azért kell, hogy elférjen a skála, a 2 pedig, hogy legyen kiterjedése a vonalnak
-                    Y2 = (int)Zoom * (T0 - y) + 2
-                });
-            }
+                    for (int x = 0; x == Coords[2, 2, x]; x++)
+                    {
+                        canvEuler.Children.Add(new Line
+                        {
+                            Stroke = System.Windows.Media.Brushes.DarkRed,
+                            StrokeThickness = 4,
+                            X1 = (int)Zoom * Coords[2, 0, x] + 50,
+                            Y1 = (int)Zoom * (T0 - Coords[2, 1, x]),
+                            X2 = (int)Zoom * Coords[2, 0, x] + 2 + 50,
+                            Y2 = (int)Zoom * (T0 - Coords[2, 1, x]) + 2
+                        });
+                    }
+                }
         }
 
-        public void DisplayScale()
+        private void DisplayScale()
         {
-            for (int i = (int)TR; i <= T0; i += 10)
+          for (int i = (int)TR; i <= T0; i += 10)
             {
 
                 TextBlock testc = new TextBlock();
@@ -144,8 +136,15 @@ namespace PiffTeam
             try
             {
                 float delta = Convert.ToSingle(TxDelta.Text);
+                if (co == 2) co = -1; // ciklusvaltozo, a kirajzolt fgv azosítója >> színe
+                co++;
+
+                if (co == 0) l1check.IsChecked = true;
+                if (co == 1) l2check.IsChecked = true;
+                if (co == 2) l3check.IsChecked = true;
                 func f = new func(NewtonCooling);
-                Euler(f, T0, n, delta);
+                Euler(f, T0, n, delta, co);
+                Draw();
             }
             catch(Exception)
             {
@@ -156,40 +155,35 @@ namespace PiffTeam
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             canvEuler.Children.Clear();
-            DisplayScale();
+            
             l1check.IsChecked = null;
             l2check.IsChecked = null;
             l3check.IsChecked = null;
-            Array.Clear(xCoordinates, 0, 0);
+            Array.Clear(Coords, 0, Coords.Length);
             co = -1;
         }
 
-
-        private void l1check_Checked(object sender, RoutedEventArgs e)
+        private void TxtBtn_Click(object sender, RoutedEventArgs e)
         {
-          
-        canvEuler.Children.Clear();
-        DisplayScale();
-            //        Draw(xCoordinates[0, 0, nr], xCoordinates[0, 1, nr], 0);
-            //        Draw(xCoordinates[1, 0, nr], xCoordinates[1, 1, nr], 1);
-            //        Draw(xCoordinates[2, 0, nr], xCoordinates[2, 1, nr], 2);
-        //Draw(xCoordinates[co, 0, nr], xCoordinates[co, 1, nr], co);
+            string TextName = TxtSaveBox.Text;
+            StreamWriter sw = new StreamWriter(TextName, true);
+            int n = Coords.GetLength(2);
+            for (int co = 0; co < 3; co++)
+            {
+                try
+                {
+                    sw.WriteLine("Fuggveny szam:" + co);
+                    for (int nr = 0; nr == Coords[co, 2, nr]; nr++)
+                    {
+                         sw.WriteLine("\t" + Coords[co, 0, nr] + "\t" + Coords[co, 1, nr] + "\t" + Coords[co, 2, nr]);
+                    }
+                }
+                catch (Exception ex)
+                { Console.WriteLine("Exception: " + ex.Message); }
+            } sw.Close();
         }
 
-        private void l2check_Checked(object sender, RoutedEventArgs e)
-        {
-    //   canvEuler.Children.Clear();
-    //        DisplayScale();
-            //          Draw(xCoordinates[co, 0, nr], xCoordinates[co, 1, nr], co);
-        }
-
-        private void l3check_Checked(object sender, RoutedEventArgs e)
-        {
-      //      canvEuler.Children.Clear();
-       //     DisplayScale();
-            //          Draw(xCoordinates[co, 0, nr], xCoordinates[co, 1, nr], co);
-        }
-
+               
         private void picbtn_Click(object sender, RoutedEventArgs e)
         {
             RenderTargetBitmap bmp = new RenderTargetBitmap(
@@ -203,20 +197,29 @@ namespace PiffTeam
             FileStream fs = File.Open(PicName, FileMode.OpenOrCreate);
             encoder.Save(fs);           
         }
-
-        private void TxtSaveBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void l1check_Checked(object sender, RoutedEventArgs e)
         {
-            string TextName = TxtSaveBox.Text;
+            canvEuler.Children.Clear();
+            DisplayScale();
+            Draw();
         }
 
-        private void TxtBtn_Click(object sender, RoutedEventArgs e)
+        private void l2check_Checked(object sender, RoutedEventArgs e)
         {
-            string TextName = TxtSaveBox.Text;
+            canvEuler.Children.Clear();
+            DisplayScale();
+            Draw();
         }
 
-        private void PicSaveBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void l3check_Checked(object sender, RoutedEventArgs e)
         {
-            string PicName = PicSaveBox.Text;
+            canvEuler.Children.Clear();
+            DisplayScale();
+            Draw();
         }
+
+        private void TxtSaveBox_TextChanged(object sender, TextChangedEventArgs e) { }
+
+        private void PicSaveBox_TextChanged(object sender, TextChangedEventArgs e) { }
     }
 }

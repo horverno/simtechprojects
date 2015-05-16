@@ -8,7 +8,7 @@ namespace PiffTeam
 {
     public class MyMath
     {
-        private delegate double Function(double t, double y); //Ha kétváltozós a fv. y'=f(t,y) akkor kellet t is.
+        public delegate double Function(double t, double y); //Ha kétváltozós a fv. y'=f(t,y) akkor kellet t is.
         private static double startY; //Kezdőérték f(0)
         private static double startTime; //Kezdeti időpont x(0)
         private static double endTime; //Meddig fusson a szimuláció 
@@ -18,7 +18,7 @@ namespace PiffTeam
         //2 - adaptív
         //3 - implicit
 
-        private Function f; //A kapott derivált függvény 
+        public Function f; //A kapott derivált függvény 
         private static double step; //Lépésköz (deltaT)
         private static double[] xCoordinates; // A lépéseket tartalmazó tömb
         private static double[] yCoordinates; // Az y értékeket tartalmazó tömb

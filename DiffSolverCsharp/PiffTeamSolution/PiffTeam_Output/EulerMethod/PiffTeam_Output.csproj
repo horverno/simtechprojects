@@ -126,7 +126,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="D:\Projects\Szimtech\DiffSolverCsharp\PiffTeamSolution\PiffTeam\PiffTeam_Math.csproj">
+    <ProjectReference Include="..\..\PiffTeam_Math\PiffTeam_Math.csproj">
       <Project>{bc39c31f-acef-4b15-b31f-98112e8a025c}</Project>
       <Name>PiffTeam_Math</Name>
     </ProjectReference>

@@ -13,9 +13,9 @@
                 <TextBox x:Name="TxDelta"  Width="100" Margin="4" Text="2" TextAlignment="Center"/>
                 <Button x:Name="DrawButton" Margin="4" Content="Draw" Width="100" Click="DrawButton_Click"/>
                 <Button x:Name="ClearButton" Margin="4" Content="Clear" Width="100" Click="ClearButton_Click"/>
-                <CheckBox x:Name="l1check" Content="Layer 1    " VerticalAlignment="Center" IsChecked="{x:Null}"  Checked="l1check_Checked" Unchecked="l1check_Checked"/>
-                <CheckBox x:Name="l2check" Content="Layer 2    " VerticalAlignment="Center" IsChecked="{x:Null}"  Checked="l2check_Checked" Unchecked="l2check_Checked"/>
-                <CheckBox x:Name="l3check" Content="Layer 3    " VerticalAlignment="Center" IsChecked="{x:Null}" Checked="l3check_Checked" Unchecked="l3check_Checked"/>
+                <CheckBox x:Name="l1check" Content="Blue      " VerticalAlignment="Center" IsChecked="{x:Null}"  Checked="l1check_Checked" Unchecked="l1check_Checked"/>
+                <CheckBox x:Name="l2check" Content="Green     " VerticalAlignment="Center" IsChecked="{x:Null}"  Checked="l2check_Checked" Unchecked="l2check_Checked"/>
+                <CheckBox x:Name="l3check" Content="Red       " VerticalAlignment="Center" IsChecked="{x:Null}"  Checked="l3check_Checked" Unchecked="l3check_Checked"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="PicSaveBtn" Margin="4" Content="Save as picture" Width="100" Click="picbtn_Click"/>
