@@ -11,7 +11,9 @@ namespace PiffComplett
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+    
     public partial class App : Application
     {
+        public static MyMath myMath;
     }
 }

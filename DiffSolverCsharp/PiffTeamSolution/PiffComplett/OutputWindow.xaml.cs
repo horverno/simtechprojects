@@ -20,7 +20,7 @@ namespace PiffTeam
     public partial class OutputWindow : Window
     {
         static float[,,] Coords=new float[3,3,3001]; // A lépéseket tartalmazó tömb - 1. fgv sorszam 2. x - y azonosító 3. x - y érték
-
+        
         const float T0 = 100f; // kezdőérték
         const float TR = 20f; // külső hőmérséklet
         const float k = 0.07f; // hűlési konstans
@@ -32,6 +32,11 @@ namespace PiffTeam
         {
             InitializeComponent();
             
+            // Készítette: Cs J [Math team] 05.23
+            // PiffComplett.App.myMath ból lehet a lépést és egyebeket elkérni
+            // X és Y a publikus Matek osztályból -> double[]
+            //PiffComplett.App.myMath.X
+            //PiffComplett.App.myMath.Y
         }
 
         public delegate float func(float t);
