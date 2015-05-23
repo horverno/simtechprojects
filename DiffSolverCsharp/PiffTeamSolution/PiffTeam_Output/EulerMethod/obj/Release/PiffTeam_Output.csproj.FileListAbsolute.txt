@@ -1,8 +1,0 @@
-C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Release\PiffTeam_Output.csprojResolveAssemblyReference.cache
-C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Release\MainWindow.baml
-C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Release\MainWindow.g.cs
-C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Release\App.g.cs
-C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Release\Output_MarkupCompile.cache
-C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Release\Output.g.resources
-C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Release\PiffTeam.Properties.Resources.resources
-C:\Users\Márk\Downloads\output\output\EulerMethod\obj\Release\PiffTeam_Output.csproj.GenerateResource.Cache
