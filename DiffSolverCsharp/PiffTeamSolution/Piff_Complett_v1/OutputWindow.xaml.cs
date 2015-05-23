@@ -42,11 +42,11 @@ namespace Piff_Complett_v1
         {
             //Y tömb jelenleg vmiért nullt ad vissza ezért commenteltem
             string xLength = App.myMath.X.Length.ToString();
-            //string yLength = App.myMath.Y.Length.ToString();
+            string yLength = App.myMath.Y.Length.ToString();
             string lepes = App.myMath.Step.ToString();
             string fgv = App.myMath.f.ToString();
             MessageBox.Show("X tömb hossza: "+xLength+Environment.NewLine+
-                //"Y tömb hossza: " + yLength + 
+                "Y tömb hossza: " + yLength +  Environment.NewLine+
                 "Lépés: " + lepes + Environment.NewLine + "Függvény: " + fgv);
         }
 

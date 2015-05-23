@@ -109,6 +109,8 @@ namespace Piff_Complett_v1
             diffType = _diffType;
             f = _f;
             xCoordinates = GetStep(startTime, endTime, step);
+
+            Calculate();
         }
 
         //runge kutta 4th method
@@ -147,7 +149,7 @@ namespace Piff_Complett_v1
         {
             double temp = startY;
             double forwardEulerResult = startY;
-
+            yCoordinates = new double[xCoordinates.Length];
             yCoordinates[0] = startY;
             for (int i = 1; i < xCoordinates.Length; ++i)
             {
@@ -163,6 +165,7 @@ namespace Piff_Complett_v1
         {
             double k1, k2;
             double temp = startY;
+            yCoordinates = new double[xCoordinates.Length];
             for (int i = 0; i < xCoordinates.Length; ++i)
             {
                 k1 = step * f(xCoordinates[i], temp);

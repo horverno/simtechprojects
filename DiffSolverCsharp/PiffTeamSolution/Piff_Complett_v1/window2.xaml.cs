@@ -125,7 +125,7 @@ namespace Piff_Complett_v1
             //Készítette Cs J [Math team] 05.23
             //mindenképp példányosítani kell különben null lenne
             //argumentumok sorrendben: (double)start, (double)end, (double)start y, (double) lépés, füügvény, (int) módszer
-            App.myMath = new MyMath(0, 100, 5, 20, testfv, 2);
+            App.myMath = new MyMath(0, 100, 5, 20, testfv, 0);
             //outputra navigálás
             OutputWindow outputWindow = new OutputWindow();
             outputWindow.Show();
