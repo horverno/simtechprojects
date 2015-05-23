@@ -1,4 +1,4 @@
-﻿<Window x:Class="PiffTeam.MainWindow"
+﻿<Window x:Class="PiffTeam.OutputWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Output Window" Height="640" Width="605">
