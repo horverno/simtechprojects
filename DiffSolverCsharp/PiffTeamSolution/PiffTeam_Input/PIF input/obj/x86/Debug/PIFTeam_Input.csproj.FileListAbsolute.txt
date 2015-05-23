@@ -42,3 +42,20 @@ E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF inp
 E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PIF input.g.resources
 E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PiffTeam.Properties.Resources.resources
 E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PIFTeam_Input.csproj.GenerateResource.Cache
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\bin\Debug\PIF input.exe
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\bin\Debug\PIF input.pdb
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PIFTeam_Input.csprojResolveAssemblyReference.cache
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\MainWindow.baml
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\window2.baml
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\MainWindow.g.cs
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\window2.g.cs
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\App.g.cs
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PIF input_MarkupCompile.cache
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PIF input.g.resources
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PiffTeam.Properties.Resources.resources
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PIFTeam_Input.csproj.GenerateResource.Cache
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PIF input.exe
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\obj\x86\Debug\PIF input.pdb
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\bin\Debug\PIF input.exe.config
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\bin\Debug\PiffTeam.dll
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Input\PIF input\bin\Debug\PiffTeam.pdb

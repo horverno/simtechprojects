@@ -16,16 +16,15 @@ namespace PiffTeam
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
+    
     public partial class Window1 : Window
     {
-        
         double kezdoertek;
         double vegertek;
         double lepeskoz;
         public Window1()
         {
             InitializeComponent();
-            
             kezdoertek = Convert.ToDouble(Kezdo.Content);
             vegertek = Convert.ToDouble(Veg.Content);
             lepeskoz = Convert.ToDouble(Lepes.Content);

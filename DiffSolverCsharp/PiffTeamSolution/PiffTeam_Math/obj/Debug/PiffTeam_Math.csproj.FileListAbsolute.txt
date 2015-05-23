@@ -8,3 +8,8 @@ E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Math\obj\Debu
 E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Math\obj\Debug\PiffTeam.pdb
 E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Math\bin\Debug\PiffTeam.dll
 E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Math\bin\Debug\PiffTeam.pdb
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Math\bin\Debug\PiffTeam.dll
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Math\bin\Debug\PiffTeam.pdb
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Math\obj\Debug\PiffTeam_Math.csprojResolveAssemblyReference.cache
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Math\obj\Debug\PiffTeam.dll
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\PiffTeam_Math\obj\Debug\PiffTeam.pdb

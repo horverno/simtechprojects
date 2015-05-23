@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace PiffTeam
 {
 
-    public partial class MainWindow : Window
+    public partial class OutputWindow : Window
     {
         static float[,,] Coords=new float[3,3,3001]; // A lépéseket tartalmazó tömb - 1. fgv sorszam 2. x - y azonosító 3. x - y érték
 
@@ -28,9 +28,10 @@ namespace PiffTeam
         const int n = 80;               // Y koordinata terjedelme (altalaban ido) 
         static int co = -1, nr = 0;
    
-        public MainWindow()
+        public OutputWindow()
         {
             InitializeComponent();
+            
         }
 
         public delegate float func(float t);
