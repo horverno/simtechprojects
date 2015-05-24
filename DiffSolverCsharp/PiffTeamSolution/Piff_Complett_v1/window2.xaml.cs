@@ -22,7 +22,9 @@ namespace Piff_Complett_v1
         double kezdoertek;
         double vegertek;
         double lepeskoz;
+        public int modszer;
         public Window1()
+        
         {
             InitializeComponent();
             kezdoertek = Convert.ToDouble(Kezdo.Content);
@@ -125,16 +127,19 @@ namespace Piff_Complett_v1
             //Készítette Cs J [Math team] 05.23
             //mindenképp példányosítani kell különben null lenne
             //argumentumok sorrendben: (double)start, (double)end, (double)start y, (double) lépés, füügvény, (int) módszer
-            App.myMath = new MyMath(0, 100, 5, 20, testfv, 0);
+            App.myMath = new MyMath(0, 100, 100, 10, testfv, modszer);
             //outputra navigálás
             OutputWindow outputWindow = new OutputWindow();
             outputWindow.Show();
         }
 
         //Készítette Cs J [Math team] 05.23
-        private double testfv(double t, double y)
+        private float testfv(float t, float y)
         {
-            return -y + t + 1;
+            
+          //  return -y + t + 1;
+            return -0.07f * (t - y);
+            //             return -k * (t - TR);  ezt kéne valahogy betenni newton cooling az output ból azt mondta kéri, outputba van jelmagyarázat
         }
         
 

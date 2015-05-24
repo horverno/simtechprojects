@@ -24,10 +24,10 @@
         <Button Content="Kilépés" FontSize="16" Height="30" HorizontalAlignment="Left" IsEnabled="True" Margin="6,0,0,12" Name="kilepes2" VerticalAlignment="Bottom" Visibility="Visible" Width="80" Background="Red" Foreground="Black" Click="kilepes2_Click" Grid.Row="1" />
         <GroupBox Header="Megoldási módszer" Height="167" HorizontalAlignment="Left" Margin="417,43,0,0" Name="groupBox1" VerticalAlignment="Top" Width="155" Grid.Row="1">
             <Grid>
-                <RadioButton Content="Euler" Height="30" HorizontalAlignment="Left" Margin="5,10,0,0" Name="rb1" VerticalAlignment="Top" Width="130" Checked="rb1_Checked" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" />
-                <RadioButton Content="Explicit Runge - Kutta" Height="30" HorizontalAlignment="Left" Margin="5,45,0,0" Name="rb2" VerticalAlignment="Top" Width="130" Checked="rb2_Checked" />
-                <RadioButton Content="Adaptív Runge - Kutta" Height="30" HorizontalAlignment="Left" Margin="5,80,0,0" Name="rb3" VerticalAlignment="Top" Width="130" Checked="rb3_Checked" />
-                <RadioButton Content="Implicit Runge - Kutta" Height="30" HorizontalAlignment="Left" Margin="5,115,0,0" Name="rb4" VerticalAlignment="Top" Width="130" Checked="rb4_Checked" />
+                <RadioButton Content="Euler" Height="30" HorizontalAlignment="Left" Margin="5,10,0,0" Name="rb0" VerticalAlignment="Top" Width="130" Checked="rb0_Checked" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" />
+                <RadioButton Content="Explicit Runge - Kutta" Height="30" HorizontalAlignment="Left" Margin="5,45,0,0" Name="rb1" VerticalAlignment="Top" Width="130" Checked="rb1_Checked" />
+                <RadioButton Content="Adaptív Runge - Kutta" Height="30" HorizontalAlignment="Left" Margin="5,80,0,0" Name="rb2" VerticalAlignment="Top" Width="130" Checked="rb2_Checked" />
+                <RadioButton Content="Implicit Runge - Kutta" Height="30" HorizontalAlignment="Left" Margin="5,115,0,0" Name="rb3" VerticalAlignment="Top" Width="130" Checked="rb3_Checked" />
             </Grid>
         </GroupBox>
         <GroupBox Header="Különleges karakterek" HorizontalAlignment="Left" Margin="6,216,0,0" Name="groupBox2" Width="566" Height="97" VerticalAlignment="Top"></GroupBox>

@@ -8,10 +8,10 @@ namespace Piff_Complett_v1
 {
     public class MyMath
     {
-        public delegate double Function(double t, double y); //Ha kétváltozós a fv. y'=f(t,y) akkor kellet t is.
-        private static double startY; //Kezdőérték f(0)
-        private static double startTime; //Kezdeti időpont x(0)
-        private static double endTime; //Meddig fusson a szimuláció 
+        public delegate float Function(float t, float y); //Ha kétváltozós a fv. y'=f(t,y) akkor kellet t is.
+        private static float startY; //Kezdőérték f(0)
+        private static float startTime; //Kezdeti időpont x(0)
+        private static float endTime; //Meddig fusson a szimuláció 
         private static int diffType; //A differenciál egyenlet megadási típusa
         //0 - euler
         //1 - explicit
@@ -19,12 +19,12 @@ namespace Piff_Complett_v1
         //3 - implicit
 
         public Function f; //A kapott derivált függvény 
-        private static double step; //Lépésköz (deltaT)
-        private static double[] xCoordinates; // A lépéseket tartalmazó tömb
-        private static double[] yCoordinates; // Az y értékeket tartalmazó tömb
+        private static float step; //Lépésköz (deltaT)
+        private static float[] xCoordinates; // A lépéseket tartalmazó tömb
+        private static float[] yCoordinates; // Az y értékeket tartalmazó tömb
 
         
-        public double Step
+        public float Step
         {
             get
             {
@@ -37,7 +37,7 @@ namespace Piff_Complett_v1
                 Calculate();
             }
         } //A lépésköz beállítása, mely hatására az osztály újraszámolja az x illetve az y értékeket is automatikusan
-        public double[] Y
+        public float[] Y
         {
             get
             {
@@ -45,7 +45,7 @@ namespace Piff_Complett_v1
             }
         } //Az y koordinátákat tartalmazó tömb(yCoordinates) elérése osztályon kívülről
 
-        public double[] X
+        public float[] X
         {
             get
             {
@@ -62,21 +62,21 @@ namespace Piff_Complett_v1
         /// <param name="finish"></param>
         /// <param name="interval">Lépésköz</param>
         /// <returns></returns>
-        static private double[] GetStep(double start, double finish, double interval)
+        static private float[] GetStep(float start, float finish, float interval)
         {
             if (finish < start) throw new ArgumentException("Finish nem lehet nagyobb mint a start");
             if (interval <= 0) throw new ArgumentException("Az lépésköznek nagyobbnak kell lennie mint 0");
 
-            double[] xCoordinates = new double[(int)((finish - start) / interval) + 1];
-            int digits = 5;
-            interval = Math.Round(interval, 5);
+            float[] xCoordinates = new float[(int)((finish - start) / interval) + 1];
+       //     int digits = 5;
+            //interval = Math.Round(interval, 5);
 
-            //double actual = start;
+            //float actual = start;
             xCoordinates[0] = start;
             for (int i = 0; i < xCoordinates.Length; ++i)
             {
                 xCoordinates[i] = interval * i + start;
-                xCoordinates[i] = Math.Round(xCoordinates[i], digits);
+     //           xCoordinates[i] = Math.Round(xCoordinates[i], digits);
 
             }
             xCoordinates[xCoordinates.Length - 1] = finish;
@@ -91,7 +91,7 @@ namespace Piff_Complett_v1
         /// <param name="_step">A kezdeti lépésköz</param>
         /// <param name="_f">A differenciálegyenlet</param>
         /// <param name="_diffType">A megoldás típusa 0-3 közötti szám</param>
-        public MyMath(double _starttime, double _endtime, double _starty, double _step, Function _f, int _diffType)
+        public MyMath(float _starttime, float _endtime, float _starty, float _step, Function _f, int _diffType)
         {
             /*Argumentum kivétel dobása, ha 
              * a kezdőidőpont kisebb mint 0 
@@ -116,8 +116,8 @@ namespace Piff_Complett_v1
         //runge kutta 4th method
         public void runge(Function f)
         {
-            double w, k1, k2, k3, k4;
-            yCoordinates = new double[xCoordinates.Length];
+            float w, k1, k2, k3, k4;
+            yCoordinates = new float[xCoordinates.Length];
             w = startY;
             for (int i = 0; i < xCoordinates.Length; i++)
             {
@@ -133,8 +133,8 @@ namespace Piff_Complett_v1
 
         public void eulerMethod(Function f)
         {
-            double temp = startY;
-            yCoordinates = new double[xCoordinates.Length];
+            float temp = startY;
+            yCoordinates = new float[xCoordinates.Length];
 
             yCoordinates[0] = startY;
             for (int i = 1; i < xCoordinates.Length; ++i)
@@ -147,9 +147,9 @@ namespace Piff_Complett_v1
 
         public void implicitEulerMethod(Function f)
         {
-            double temp = startY;
-            double forwardEulerResult = startY;
-            yCoordinates = new double[xCoordinates.Length];
+            float temp = startY;
+            float forwardEulerResult = startY;
+            yCoordinates = new float[xCoordinates.Length];
             yCoordinates[0] = startY;
             for (int i = 1; i < xCoordinates.Length; ++i)
             {
@@ -163,9 +163,9 @@ namespace Piff_Complett_v1
 
         public void explicitRungeKutta(Function f)
         {
-            double k1, k2;
-            double temp = startY;
-            yCoordinates = new double[xCoordinates.Length];
+            float k1, k2;
+            float temp = startY;
+            yCoordinates = new float[xCoordinates.Length];
             for (int i = 0; i < xCoordinates.Length; ++i)
             {
                 k1 = step * f(xCoordinates[i], temp);
@@ -231,14 +231,14 @@ namespace Piff_Complett_v1
 
         private void setDefault()
         {
-            GetStep(0, 5, .01f);
+            GetStep(0, 10, .01f);
             startTime = 0;
             endTime = 5;
             startY = 1;
             step = .01f;
         }
 
-        private double testfv(double t, double y)
+        private float testfv(float t, float y)
         {
             return -y + t + 1;
         }

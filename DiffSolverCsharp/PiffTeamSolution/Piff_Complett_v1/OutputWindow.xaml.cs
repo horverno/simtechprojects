@@ -23,7 +23,7 @@ namespace Piff_Complett_v1
         const float TR = 20f; // külső hőmérséklet
         const float k = 0.07f; // hűlési konstans
         readonly static float Zoom = 5;
-        const int n = 80;               // Y koordinata terjedelme (altalaban ido) 
+        const int n = 100;               // Y koordinata terjedelme (altalaban ido) 
         static int co = -1, nr = 0;
 
         public OutputWindow()
@@ -41,8 +41,10 @@ namespace Piff_Complett_v1
         public void testAtadas()
         {
             //Y tömb jelenleg vmiért nullt ad vissza ezért commenteltem
-            string xLength = App.myMath.X.Length.ToString();
-            string yLength = App.myMath.Y.Length.ToString();
+            float[] xtomb = App.myMath.X;
+            float[] ytomb = App.myMath.Y;
+            int xLength = App.myMath.X.Length;
+            int yLength = App.myMath.Y.Length;
             string lepes = App.myMath.Step.ToString();
             string fgv = App.myMath.f.ToString();
             MessageBox.Show("X tömb hossza: "+xLength+Environment.NewLine+
@@ -50,38 +52,59 @@ namespace Piff_Complett_v1
                 "Lépés: " + lepes + Environment.NewLine + "Függvény: " + fgv);
         }
 
-        public delegate float func(float t);
+  /*      public delegate float func(float t);
         static float NewtonCooling(float t)
         {
             return -k * (t - TR);
         }
-
+        */
         /// <param name="f">hűlési függvény</param>
         /// <param name="y">t0 értéke</param>
         /// <param name="n">db</param>
         /// <param name="h">dettaT</param>
         /// <param name="co">aktuális szín</param>
 
-        public void Euler(func f, float y, int n, float h, int co)
-        {
-            nr = 0; // ciklusvaltozo, X eredményé
 
-            for (float x = 0; x <= n; x += h)
+        public void Masol(int co)
+        {
+
+            for (nr = 0; nr < App.myMath.X.Length; nr++)
             {
 
-                Coords[co, 0, nr] = (float)x;
-                Coords[co, 1, nr] = (float)y;
-                Coords[co, 2, nr] = (float)nr;
+                Coords[co, 0, nr] = App.myMath.X[nr];
+                Coords[co, 1, nr] = App.myMath.Y[nr];
+                Coords[co, 2, nr] = nr;
 
-                System.Diagnostics.Debug.WriteLine("\t" + x + "\t" + y + "\t" + nr);
-                y += h * f(y);
-
-                nr++;
+                System.Diagnostics.Debug.WriteLine("\t" + App.myMath.X[nr] + "\t" + App.myMath.Y[nr] + "\t" + nr);
+         
             }
+
+
+
         }
 
+        /*       public void Euler(func f, float y, int n, float h, int co)
+             {
+                 nr = 0; // ciklusvaltozo, X eredményé
+
+                 for (float x = 0; x <= n; x += h)
+                 {
+
+                     Coords[co, 0, nr] = (float)x;
+                     Coords[co, 1, nr] = (float)y;
+                     Coords[co, 2, nr] = (float)nr;
+
+          //           System.Diagnostics.Debug.WriteLine("\t" + x + "\t" + y + "\t" + nr);
+                     y += h * f(y);
+
+                     nr++;
+                 }
+             }*/
+
         public void Draw()
-        {       // co azt azonosítja hogy draw button katt esetén melyik szín jön most, it coord elso dimenzioja
+        {
+          //  Coords[1, 0,] = xtomb;
+            // co azt azonosítja hogy draw button katt esetén melyik szín jön most, it coord elso dimenzioja
             // isChecked: pipa kivétel esetén el kellene tünjön(mindet újra rajzolva kivéve disabled-et)
             float distance, min, max;
             GetMaxMin(out max, out min, out distance);
@@ -168,7 +191,6 @@ namespace Piff_Complett_v1
                     Y1 = j * 5 + 16,
                     Y2 = j * 5 + 16,
                 });
-                //distance=
                 TextBlock testc = new TextBlock();
                 //    if(j==0)testc.Text = " " + Math.Round(( min), 2) + "°C";
                 //    else if(j==100)testc.Text = " " + Math.Round(( max), 2) + "°C";
@@ -210,8 +232,9 @@ namespace Piff_Complett_v1
                 if (co == 2) co = -1; // ciklusvaltozo, a kirajzolt fgv azosítója >> színe
                 co++;
                 //     Console.WriteLine("x: " + Cursor.Position.X + " y: " + Cursor.Position.Y);
-                func f = new func(NewtonCooling);
-                Euler(f, T0, n, delta, co);
+       //         func f = new func(NewtonCooling);
+       //         Euler(f, T0, n, delta, co);
+                Masol(co);
                 if (co == 0) l1check.IsChecked = true;
                 if (co == 1) l2check.IsChecked = true;
                 if (co == 2) l3check.IsChecked = true;

@@ -21,7 +21,7 @@ namespace Piff_Complett_v1
         
         public Window1 window2=new Window1();
         public TextBox infocus;
-        public double modszer;
+        public int modszer;
         public string modszertext;
         public MainWindow()
         {
@@ -219,32 +219,32 @@ namespace Piff_Complett_v1
             infocus = nevezo2;
         }
 
-        private void rb1_Checked(object sender, RoutedEventArgs e)
+        private void rb0_Checked(object sender, RoutedEventArgs e)
         {
-            modszer = 1;
-            modszertext = rb1.Content.ToString();
+            window2.modszer = 0;
+            modszertext = rb0.Content.ToString();
             ntTovabbgomb.IsEnabled = true;
             
         }
 
+        private void rb1_Checked(object sender, RoutedEventArgs e)
+        {
+            window2.modszer = 1;
+            modszertext = rb1.Content.ToString();
+            ntTovabbgomb.IsEnabled = true;
+        }
+
         private void rb2_Checked(object sender, RoutedEventArgs e)
         {
-            modszer = 2;
+            window2.modszer = 2;
             modszertext = rb2.Content.ToString();
             ntTovabbgomb.IsEnabled = true;
         }
 
         private void rb3_Checked(object sender, RoutedEventArgs e)
         {
-            modszer = 3;
+            window2.modszer = 3;
             modszertext = rb3.Content.ToString();
-            ntTovabbgomb.IsEnabled = true;
-        }
-
-        private void rb4_Checked(object sender, RoutedEventArgs e)
-        {
-            modszer = 4;
-            modszertext = rb4.Content.ToString();
             ntTovabbgomb.IsEnabled = true;
         }
 
