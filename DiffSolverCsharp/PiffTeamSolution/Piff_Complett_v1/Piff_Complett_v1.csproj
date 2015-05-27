@@ -61,9 +61,6 @@
       <DependentUpon>OutputWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PiffMath.cs" />
-    <Compile Include="window2.xaml.cs">
-      <DependentUpon>window2.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.xaml.cs">
@@ -103,10 +100,6 @@
     <Page Include="OutputWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="window2.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

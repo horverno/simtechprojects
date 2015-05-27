@@ -18,141 +18,26 @@ namespace Piff_Complett_v1
     /// </summary>
     public partial class MainWindow : Window
     {
-        
-        public Window1 window2=new Window1();
+
         public TextBox infocus;
         public int modszer;
         public string modszertext;
+        public string aktual;
+
         public MainWindow()
         {
             InitializeComponent();
-            angolnyelv();
-            
+            modifystep();
         }
 
-        private void ntTovabbgomb_Click(object sender, RoutedEventArgs e)
+        public void modifystep()
         {
-            
-            string egyenlet;
-            string jobboldal;
-            string baloldal;
-
-            if ((szamlalo1.Text != "") && (szamlalo2.Text != ""))
-            {
-
-                if (nevezo1.Visibility == Visibility.Visible)
-                {
-                    baloldal = "(" + szamlalo1.Text + ")" + " / " + "(" + nevezo1.Text + ")";
-                }
-                else
-                {
-                    baloldal = szamlalo1.Text;
-                }
-                if (nevezo2.Visibility == Visibility.Visible)
-                {
-                    jobboldal = "(" + szamlalo2.Text + ")" + " / " + "(" + nevezo2.Text + ")";
-                }
-                else
-                {
-                    jobboldal = szamlalo2.Text;
-                }
-
-                egyenlet = baloldal + "=" + jobboldal;
-                Main.Hide();
-                window2.Owner = Main;
-                window2.Show();
-                window2.textBlock2.Text = modszertext;
-                window2.textBlock1.Text = egyenlet;
-            }
-            else
-            {
-                MessageBox.Show("Túl kevés bevitt adat!");
-            }
+            Stepscrollbar.Minimum = 0.1;
+            Stepscrollbar.Maximum = X_max_scrollbar.Value - X_min_scrollbar.Value;
         }
 
-        private void elsoplusz_Click(object sender, RoutedEventArgs e)
-        {
-            elsoplusz.Visibility = Visibility.Hidden;
-            osztas.Visibility = Visibility.Visible;
-            nevezo1.Visibility = Visibility.Visible;
-            Egyenlosegjel.Margin = new Thickness(155, 45, 0, 0);
-            nevezo1torles.Visibility = Visibility.Visible;
-            if (nevezo2.Visibility == Visibility.Visible)
-            {
-                //Egyenlosegjel.Margin = new Thickness(155, 63, 0, 0);
-                szamlalo1.Margin = new Thickness(15, 15, 0, 0);
-            }
-            else
-                szamlalo2.Margin = new Thickness(220, 45, 0, 0);
-            masodikplusz.Margin = new Thickness(275, 100, 0, 0);
-        }
 
-        private void nevezo1torles_Click(object sender, RoutedEventArgs e)
-        {
-            nevezo1torles.Visibility = Visibility.Hidden;
-            elsoplusz.Visibility = Visibility.Visible;
-            osztas.Visibility = Visibility.Hidden;
-            nevezo1.Visibility = Visibility.Hidden;
-            Egyenlosegjel.Margin = new Thickness(155, 70, 0, 0);
-            if (nevezo2.Visibility == Visibility.Visible)
-            {
-                szamlalo1.Margin = new Thickness(15, 45, 0, 0);
-                elsoplusz.Margin = new Thickness(70, 100, 0, 0);
 
-            }
-            else
-            {
-                Egyenlosegjel.Margin = new Thickness(155, 10, 0, 0);
-                szamlalo2.Margin = new Thickness(220, 15, 0, 0);
-                masodikplusz.Margin = new Thickness(275, 70, 0, 0);
-                elsoplusz.Margin = new Thickness(70, 70, 0, 0);
-            }
-        }
-
-        private void masodikplusz_Click(object sender, RoutedEventArgs e)
-        {
-            masodikplusz.Visibility = Visibility.Hidden;
-            osztas2.Visibility = Visibility.Visible;
-            nevezo2.Visibility = Visibility.Visible;
-            nevezo2torles.Visibility = Visibility.Visible;
-            if (nevezo1.Visibility == Visibility.Visible)
-            {
-                //Egyenlosegjel.Margin = new Thickness(155, 63, 0, 0);
-                szamlalo2.Margin = new Thickness(220, 15, 0, 0);
-                masodikplusz.Margin = new Thickness(275, 70, 0, 0);
-            }
-            else
-            {
-                Egyenlosegjel.Margin = new Thickness(155, 45, 0, 0);
-                szamlalo1.Margin = new Thickness(15, 45, 0, 0);
-                elsoplusz.Margin = new Thickness(70, 100, 0, 0);
-            }
-        }
-
-        private void nevezo2torles_Click(object sender, RoutedEventArgs e)
-        {
-            nevezo2torles.Visibility = Visibility.Hidden;
-            masodikplusz.Visibility = Visibility.Visible;
-            osztas2.Visibility = Visibility.Hidden;
-            nevezo2.Visibility = Visibility.Hidden;
-            if ((nevezo1.Visibility == Visibility.Visible) && (nevezo2.Visibility == Visibility.Visible))
-            {
-                Egyenlosegjel.Margin = new Thickness(155, 45, 0, 0);
-            }
-            if (nevezo1.Visibility == Visibility.Visible)
-            {
-                Egyenlosegjel.Margin = new Thickness(155, 45, 0, 0);
-                szamlalo2.Margin = new Thickness(220, 45, 0, 0);
-                masodikplusz.Margin = new Thickness(275, 100, 0, 0);
-            }
-            else
-            {
-                Egyenlosegjel.Margin = new Thickness(155, 10, 0, 0);
-                szamlalo1.Margin = new Thickness(15, 15, 0, 0);
-                elsoplusz.Margin = new Thickness(70, 70, 0, 0);
-                masodikplusz.Margin = new Thickness(275, 70, 0, 0);
-            }
-        }
 
         private void kilepes2_Click(object sender, RoutedEventArgs e)
         {
@@ -186,16 +71,20 @@ namespace Piff_Complett_v1
             string second;
             symbol = sender.ToString();
             symbol = symbol.Substring(symbol.Length - 1);
+
             if (infocus != null)
             {
-                kari = infocus.CaretIndex;
-                first = infocus.Text.Substring(0, kari);
-                second = infocus.Text.Substring(kari);
-                infocus.Text = first + symbol + second;
-                infocus.Focus();
-                infocus.CaretIndex = kari+1;
+                if ((infocus != szamlalo1) || (infocus == szamlalo1) && (szamlalo1.Text.Length != 1))
+                {
+                    kari = infocus.CaretIndex;
+                    first = infocus.Text.Substring(0, kari);
+                    second = infocus.Text.Substring(kari);
+                    infocus.Text = first + symbol + second;
+                    infocus.Focus();
+                    infocus.CaretIndex = kari + 1;
+                }
             }
-            
+
         }
 
 
@@ -204,112 +93,95 @@ namespace Piff_Complett_v1
             infocus = szamlalo1;
         }
 
-        private void nevezo1_GotFocus(object sender, RoutedEventArgs e)
-        {
-            infocus = nevezo1;
-        }
-
         private void szamlalo2_GotFocus(object sender, RoutedEventArgs e)
         {
             infocus = szamlalo2;
         }
 
-        private void nevezo2_GotFocus(object sender, RoutedEventArgs e)
-        {
-            infocus = nevezo2;
-        }
-
-        private void rb0_Checked(object sender, RoutedEventArgs e)
-        {
-            window2.modszer = 0;
-            modszertext = rb0.Content.ToString();
-            ntTovabbgomb.IsEnabled = true;
-            
-        }
-
         private void rb1_Checked(object sender, RoutedEventArgs e)
         {
-            window2.modszer = 1;
+            modszer = 0;
             modszertext = rb1.Content.ToString();
-            ntTovabbgomb.IsEnabled = true;
+            Tovabbgomb.IsEnabled = true;
         }
 
         private void rb2_Checked(object sender, RoutedEventArgs e)
         {
-            window2.modszer = 2;
+            modszer = 1;
             modszertext = rb2.Content.ToString();
-            ntTovabbgomb.IsEnabled = true;
+            Tovabbgomb.IsEnabled = true;
         }
 
         private void rb3_Checked(object sender, RoutedEventArgs e)
         {
-            window2.modszer = 3;
+            modszer = 2;
             modszertext = rb3.Content.ToString();
-            ntTovabbgomb.IsEnabled = true;
+            Tovabbgomb.IsEnabled = true;
+        }
+
+        private void rb4_Checked(object sender, RoutedEventArgs e)
+        {
+            modszer = 3;
+            modszertext = rb4.Content.ToString();
+            Tovabbgomb.IsEnabled = true;
         }
 
         public void angolnyelv()
         {
-            window2.Title = "Differential Equation Solver";
-            Main.Title = "Differential Equation Solver";
-            kilepes2.Content = "Quit";
-            ntTovabbgomb.Content = "Next";
-            groupBox1.Header = "Solver Method";
-            groupBox2.Header = "Special Characters";
-            label1.Content = "Language:";
-            groupBox3.Header = "Equation submit";
-            window2.groupBox1.Header = "Equation";
-            window2.groupBox2.Header = "Chosen Solver Method";
-            window2.groupBox3.Header = "Submit Time Values";
-            window2.label1.Content = "Start Time";
-            window2.label2.Content = "End Time";
-            window2.label3.Content = "Interval";
-            window2.kilepes.Content = "Quit";
-            window2.Tovabbgomb.Content = "Next";
-            window2.Back.Content = "Back";
+            if (Main.IsLoaded == true)
+            {
+                Main.Title = "Differential Equation Solver";
+                kilepes2.Content = "Quit";
+                Tovabbgomb.Content = "Next";
+                groupBox1.Header = "Solver Method";
+                groupBox2.Header = "Special Characters";
+                groupBox3.Header = "Equation";
+                nyelv_lbl.Content = "Language:";
+                Értékek_gb.Header = "Values";
+                lblX_min.Content = "Start Time:";
+                lblX_max.Content = "End Time:";
+                lblStep.Content = "Interval:";
+                lblY_axis.Content = "Y axis minimum:";
+            }
         }
 
         private void magyarnyelv()
         {
-            window2.Title = "Differenciál Egyenlet Megoldó";
-            Main.Title = "Differenciál Egyenlet Megoldó";
-            kilepes2.Content = "Kilépés";
-            ntTovabbgomb.Content = "Tovább";
-            groupBox1.Header = "Megoldási módszer";
-            groupBox2.Header = "Különleges karakterek";
-            groupBox3.Header = "Egyenlet megadása";
-            label1.Content = "Nyelv:";
-            window2.groupBox1.Header = "Egyenlet";
-            window2.groupBox2.Header = "Választott megoldási módszer";
-            window2.groupBox3.Header = "Időadatok megadása";
-            window2.label1.Content = "Kezdőidőpont";
-            window2.label2.Content = "Végidőpont";
-            window2.label3.Content = "Lépés";
-            window2.kilepes.Content = "Kilépés";
-            window2.Tovabbgomb.Content = "Tovább";
-            window2.Back.Content = "Vissza";
+            if (Main.IsLoaded == true)
+            {
+                Main.Title = "Differenciál Egyenlet Megoldó";
+                kilepes2.Content = "Kilépés";
+                Tovabbgomb.Content = "Tovább";
+                groupBox1.Header = "Megoldási módszer";
+                groupBox2.Header = "Különleges karakterek";
+                groupBox3.Header = "Egyenlet";
+                nyelv_lbl.Content = "Nyelv:";
+                Értékek_gb.Header = "Értékek";
+                lblX_min.Content = "Kezdőidőpont:";
+                lblX_max.Content = "Végidőpont:";
+                lblStep.Content = "Lépés:";
+                lblY_axis.Content = "Y tengely minimum:";
+            }
         }
 
 
         private void nemetnyelv()
         {
-            window2.Title = "Differentialgleichungslöser";
-            Main.Title = "Differentialgleichungslöser";
-            kilepes2.Content = "Austritt";
-            ntTovabbgomb.Content =  "Weiter";
-            groupBox1.Header = "Gleichungstyp";
-            groupBox2.Header = "Spezifische Charaktere";
-            groupBox3.Header = "Gleichungübergabe";
-            label1.Content = "Sprache:";
-            window2.groupBox1.Header = "Gleichung";
-            window2.groupBox2.Header = "Gewähltes Gleichungstyp";
-            window2.groupBox3.Header = "Zeitdaten übergabe";
-            window2.label1.Content = "Startzeit";
-            window2.label2.Content = "Endzeit";
-            window2.label3.Content = "Intervall";
-            window2.kilepes.Content = "Austritt";
-            window2.Tovabbgomb.Content = "Weiter";
-            window2.Back.Content = "Zurück";
+            if (Main.IsLoaded == true)
+            {
+                Main.Title = "Differentialgleichungslöser";
+                kilepes2.Content = "Austritt";
+                Tovabbgomb.Content = "Weiter";
+                groupBox1.Header = "Gleichungstyp";
+                groupBox2.Header = "Spezifische Charaktere";
+                groupBox3.Header = "Gleichung";
+                nyelv_lbl.Content = "Sprache:";
+                Értékek_gb.Header = "Werte";
+                lblX_min.Content = "Startzeit:";
+                lblX_max.Content = "Endzeit:";
+                lblStep.Content = "Intervall:";
+                lblY_axis.Content = "Y Welle minimum:";
+            }
         }
 
 
@@ -318,10 +190,10 @@ namespace Piff_Complett_v1
             switch (nyelvvalasztas.SelectedIndex.ToString())
             {
                 case "0":
-                    angolnyelv();
+                    magyarnyelv();
                     break;
                 case "1":
-                    magyarnyelv();
+                    angolnyelv();
                     break;
                 case "2":
                     nemetnyelv();
@@ -329,10 +201,312 @@ namespace Piff_Complett_v1
             }
         }
 
-      
+        private void szamlalo1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            szamlalo2.Focus();
+        }
 
 
+        private void step_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            step.CaretIndex = step.Text.Length;
+
+            if ((step.Text != "") && (step.Text != "0") && (step.Text != "0,") && (step.Text != "0,0"))
+            {
+                try
+                {
+                    Stepscrollbar.Value = Convert.ToDouble(step.Text);
+
+                    if (Convert.ToDouble(step.Text) > (X_max_scrollbar.Value - X_min_scrollbar.Value))
+                    {
+                        Stepscrollbar.Value = (X_max_scrollbar.Value - X_min_scrollbar.Value);
+                        step.Text = Stepscrollbar.Value.ToString();
+                    }
+                    if (Convert.ToDouble(step.Text) < 0.1)
+                    {
+                        Stepscrollbar.Value = 0.1;
+                        step.Text = Stepscrollbar.Value.ToString();
+
+                    }
 
 
+                }
+                catch
+                {
+                    if
+                    (Main.IsLoaded == true)
+                    {
+
+
+                        step.Text = "0,1";
+
+                        Stepscrollbar.Value = Convert.ToDouble(step.Text);
+
+
+                    }
+                }
+
+            }
+        }
+
+
+        private void step_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if ((step.Text == "0") || (step.Text == "0,0") || (step.Text == "") || (step.Text[step.Text.Length - 1] == ','))
+            {
+                if (step.Text == "")
+                {
+                    Stepscrollbar.Value = 0.1;
+                    step.Text = "0,1";
+                }
+                else
+                {
+                    if ((step.Text[step.Text.Length - 1] == ',') && (step.Text[0] != '0'))
+                    {
+                        Stepscrollbar.Value = Convert.ToDouble(step.Text.Substring(0, step.Text.Length - 1));
+                        step.Text = step.Text.Substring(0, step.Text.Length - 1);
+                    }
+                    else
+                    {
+                        Stepscrollbar.Value = 0.1;
+                        step.Text = "0,1";
+                    }
+                }
+            }
+            else
+            {
+                Stepscrollbar.Value = Convert.ToDouble(step.Text);
+            }
+
+        }
+
+        private void Y_scrollbar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Y_tb.Text = Y_scrollbar.Value.ToString();
+            Y_tb.Focus();
+        }
+
+        private void Y_tb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Y_tb.CaretIndex = Y_tb.Text.Length;
+
+            try
+            {
+                if (Y_tb.Text != "")
+                {
+                    Convert.ToInt16(Y_tb.Text);
+                    Y_scrollbar.Value = Convert.ToDouble(Y_tb.Text);
+                }
+            }
+            catch
+            {
+                Y_scrollbar.Value = 0;
+                Y_tb.Text = Y_scrollbar.Value.ToString();
+            }
+
+        }
+
+        private void Y_tb_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Y_tb.Text == "")
+            {
+                Y_scrollbar.Value = 0;
+                Y_tb.Text = "0";
+            }
+            else
+            {
+                Y_scrollbar.Value = Convert.ToDouble(Y_tb.Text);
+            }
+        }
+
+        private void X_max_scrollbar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (Main.IsLoaded == true)
+            {
+                if (X_max_scrollbar.Value > X_min_scrollbar.Value)
+                {
+                    X_max.Text = X_max_scrollbar.Value.ToString();
+                }
+                else
+                {
+                    X_max_scrollbar.Value = X_min_scrollbar.Value + 1;
+                    X_max.Text = X_max_scrollbar.Value.ToString();
+                }
+                modifystep();
+                X_max.Focus();
+            }
+        }
+
+
+        private void X_min_scrollbar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+            if (X_min_scrollbar.Value < X_max_scrollbar.Value)
+            {
+                X_min.Text = X_min_scrollbar.Value.ToString();
+            }
+            else
+            {
+                X_min_scrollbar.Value = X_max_scrollbar.Value - 1;
+                X_min.Text = X_min_scrollbar.Value.ToString();
+            }
+            modifystep();
+            X_min.Focus();
+        }
+
+        private void X_min_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (X_min.Text == "")
+            {
+                X_min_scrollbar.Value = 0;
+                X_min.Text = "0";
+            }
+            else if (Convert.ToDouble(X_max.Text) < (Convert.ToDouble(X_min.Text)))
+            {
+                X_min_scrollbar.Value = (X_max_scrollbar.Value - 1);
+                X_min.Text = X_min_scrollbar.Value.ToString();
+            }
+            else
+            {
+                X_min_scrollbar.Value = Convert.ToDouble(X_min.Text);
+            }
+        }
+
+        private void X_max_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (X_max.Text == "")
+            {
+                X_max_scrollbar.Value = 0;
+                X_max.Text = "0";
+            }
+            else if (Convert.ToDouble(X_max.Text) < (Convert.ToDouble(X_min.Text)))
+            {
+                X_max_scrollbar.Value = (X_min_scrollbar.Value + 1);
+                X_max.Text = X_max_scrollbar.Value.ToString();
+            }
+            else
+            {
+                X_max_scrollbar.Value = Convert.ToDouble(X_max.Text);
+
+            }
+        }
+
+        private void Stepscrollbar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+            step.Text = Stepscrollbar.Value.ToString();
+            step.Focus();
+        }
+
+        private void X_min_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            X_min.CaretIndex = X_min.Text.Length;
+
+            try
+            {
+                X_min_scrollbar.Value = Convert.ToDouble(X_min.Text);
+            }
+            catch
+            {
+                if
+                (Main.IsLoaded == true)
+                {
+
+
+                    X_min.Text = (X_max_scrollbar.Value - 1).ToString();
+
+                }
+
+
+            }
+        }
+
+        private void X_max_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            X_max.CaretIndex = X_max.Text.Length;
+
+            try
+            {
+                Convert.ToDouble(X_max.Text);
+
+            }
+            catch
+            {
+                if
+                (Main.IsLoaded == true)
+                {
+                    X_max.Text = (X_min_scrollbar.Value + 1).ToString();
+                }
+
+
+            }
+        }
+
+        private void Tovabbgomb_Click(object sender, RoutedEventArgs e)
+        {
+            
+            string uzenet="";
+            if (!inputell())
+            {
+                MessageBox.Show("Hiányos adatbevitel!");
+            }
+            else
+            {
+                uzenet = string.Format("{0}: {1}{2}{2}{3} {4}{2}{5} {6}{2}{2}{7} {8}{2}{2}{9} {10}{2}{2}{11}: {12}",groupBox3.Header.ToString(), szamlalo1.Text + "=" + szamlalo2.Text, Environment.NewLine,lblX_min.Content.ToString(), X_min_scrollbar.Value.ToString(), lblX_max.Content.ToString(),X_max_scrollbar.Value.ToString(),lblStep.Content.ToString(),Stepscrollbar.Value.ToString(),lblY_axis.Content.ToString(),Y_scrollbar.Value.ToString(),groupBox1.Header.ToString(),megoldo(modszer));
+
+                MessageBoxResult valasz = MessageBox.Show(uzenet, Main.Title, MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                if (valasz == MessageBoxResult.OK)
+                {
+                    //Készítette Cs J [Math team] 05.23
+                    //mindenképp példányosítani kell különben null lenne
+                    //argumentumok sorrendben: (double)start, (double)end, (double)start y, (double) lépés, füügvény, (int) módszer
+                    App.myMath = new MyMath((float)X_min_scrollbar.Value, (float)X_max_scrollbar.Value, (float)Y_scrollbar.Value, (float)Stepscrollbar.Value, testfv, (int)modszer);
+                    //outputra navigálás
+                    OutputWindow outputWindow = new OutputWindow();
+                    outputWindow.Show();
+                }
+            }
+        }
+
+        //Készítette Cs J [Math team] 05.23
+        private float testfv(float t, float y)
+        {
+            //  return -y + t + 1;
+            return -0.07f * (t - y);
+            //             return -k * (t - TR);  ezt kéne valahogy betenni newton cooling az output ból azt mondta kéri, outputba van jelmagyarázat
+        }
+
+        private string megoldo(int modszer)
+        {
+            string text="";
+            switch (modszer)
+            {
+                case 0:
+                    text = "Euler";
+                    break;
+                case 1:
+                    text = "Explicit Runge-Kutta";
+                    break;
+                case 2:
+                    text = "Adaptiv Runge-Kutta";
+                    break;
+                case 3:
+                    text = "Implicit Euler";
+                    break;
+            }
+            return text;
+        }
+        private Boolean inputell()
+        {
+            Boolean ok;
+            if ((szamlalo1.Text != "") && (szamlalo2.Text != ""))
+            {
+                ok = true;
+            }
+            else ok = false;
+
+            return ok;
+        }
+       
     }
 }
