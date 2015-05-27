@@ -32,7 +32,7 @@ namespace Piff_Complett_v1
 
         public void modifystep()
         {
-            Stepscrollbar.Minimum = 0.1;
+            Stepscrollbar.Minimum = 0.01;
             Stepscrollbar.Maximum = X_max_scrollbar.Value - X_min_scrollbar.Value;
         }
 
@@ -222,9 +222,9 @@ namespace Piff_Complett_v1
                         Stepscrollbar.Value = (X_max_scrollbar.Value - X_min_scrollbar.Value);
                         step.Text = Stepscrollbar.Value.ToString();
                     }
-                    if (Convert.ToDouble(step.Text) < 0.1)
+                    if (Convert.ToDouble(step.Text) < 0.01)
                     {
-                        Stepscrollbar.Value = 0.1;
+                        Stepscrollbar.Value = 0.01;
                         step.Text = Stepscrollbar.Value.ToString();
 
                     }
@@ -238,7 +238,7 @@ namespace Piff_Complett_v1
                     {
 
 
-                        step.Text = "0,1";
+                        step.Text = "0,01";
 
                         Stepscrollbar.Value = Convert.ToDouble(step.Text);
 
@@ -256,8 +256,8 @@ namespace Piff_Complett_v1
             {
                 if (step.Text == "")
                 {
-                    Stepscrollbar.Value = 0.1;
-                    step.Text = "0,1";
+                    Stepscrollbar.Value = 0.01;
+                    step.Text = "0,01";
                 }
                 else
                 {
@@ -268,8 +268,8 @@ namespace Piff_Complett_v1
                     }
                     else
                     {
-                        Stepscrollbar.Value = 0.1;
-                        step.Text = "0,1";
+                        Stepscrollbar.Value = 0.01;
+                        step.Text = "0,01";
                     }
                 }
             }

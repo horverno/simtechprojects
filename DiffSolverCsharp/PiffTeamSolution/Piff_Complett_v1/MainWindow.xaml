@@ -85,8 +85,8 @@
         <TextBox x:Name="Y_tb" HorizontalAlignment="Left" Height="30" Margin="436,276,0,0" Text="0" VerticalAlignment="Top" Width="111" MaxLength="4" TextChanged="Y_tb_TextChanged" LostFocus="Y_tb_LostFocus" FontSize="20" BorderThickness="1,0,0,0" BorderBrush="Black" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" TabIndex="9"/>
         <Label x:Name="lblY_axis" Content="Y tengely minimum:" FontSize="14" Margin="436,246,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="137" BorderBrush="Black" BorderThickness="1,0,0,0"/>
         <Label x:Name="lblStep" Content="Lépés:" Margin="328,246,0,0" FontSize="14" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" BorderBrush="Black" BorderThickness="1,0,0,0"/>
-        <TextBox HorizontalAlignment="Left" x:Name="step" Height="30" Margin="328,276,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="74" TextChanged="step_TextChanged" MaxLength="4" LostFocus="step_LostFocus" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" BorderBrush="Black" BorderThickness="1,0,0,0" TabIndex="8"/>
-        <ScrollBar x:Name="Stepscrollbar" HorizontalAlignment="Left" Height="30" Margin="407,276,0,0" Width="21" ValueChanged="Stepscrollbar_ValueChanged" Value="0.1" VerticalAlignment="Top" LargeChange="0.1" TabIndex="10" Minimum="0.1" SmallChange="0.1" RenderTransformOrigin="0.5,0.5" >
+        <TextBox HorizontalAlignment="Left" x:Name="step" Height="30" Margin="328,276,0,0" TextWrapping="Wrap" Text="0,01" VerticalAlignment="Top" Width="74" TextChanged="step_TextChanged" MaxLength="4" LostFocus="step_LostFocus" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" BorderBrush="Black" BorderThickness="1,0,0,0" TabIndex="8"/>
+        <ScrollBar x:Name="Stepscrollbar" HorizontalAlignment="Left" Height="30" Margin="407,276,0,0" Width="21" ValueChanged="Stepscrollbar_ValueChanged" Value="0.01" VerticalAlignment="Top" LargeChange="0.01" TabIndex="10" Minimum="0.01" SmallChange="0.01" RenderTransformOrigin="0.5,0.5" >
             <ScrollBar.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -118,7 +118,7 @@
             </ScrollBar.RenderTransform>
         </ScrollBar>
         <Label x:Name="lblX_max" Content="Végidőpont:" Margin="173,246,0,0" FontSize="14" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" BorderBrush="Black" BorderThickness="1,0,0,0"/>
-        <TextBox x:Name="X_max" HorizontalAlignment="Left" Height="30" Margin="173,276,0,0" Text="100" VerticalAlignment="Top" Width="124" MaxLength="4" FontSize="20" BorderThickness="1,0,0,0" BorderBrush="Black" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" LostFocus="X_max_LostFocus" TextChanged="X_max_TextChanged" TabIndex="7"/>
+        <TextBox x:Name="X_max" HorizontalAlignment="Left" Height="30" Margin="173,276,0,0" Text="1" VerticalAlignment="Top" Width="124" MaxLength="4" FontSize="20" BorderThickness="1,0,0,0" BorderBrush="Black" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" LostFocus="X_max_LostFocus" TextChanged="X_max_TextChanged" TabIndex="7"/>
         <Label Name="lblX_min" Content="Kezdőidőpont:" Margin="18,246,0,0" FontSize="14" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" BorderBrush="Black" BorderThickness="0"/>
         <TextBox x:Name="X_min" HorizontalAlignment="Left" Height="30" Margin="18,276,0,0" Text="0" VerticalAlignment="Top" Width="124" MaxLength="4" FontSize="20" BorderThickness="0" BorderBrush="Black" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" TextChanged="X_min_TextChanged" TabIndex="6"/>
 

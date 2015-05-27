@@ -23,7 +23,7 @@ namespace Piff_Complett_v1
         const float TR = 20f; // külső hőmérséklet
         const float k = 0.07f; // hűlési konstans
         readonly static float Zoom = 5;
-        const int n = 100;               // Y koordinata terjedelme (altalaban ido) 
+        float n = (float)App.myMath.GetTime();                   // Y koordinata terjedelme (altalaban ido) 
         static int co = -1, nr = 0;
 
         public OutputWindow()
@@ -203,7 +203,8 @@ namespace Piff_Complett_v1
                 j += 10;
             }               // n
             j = 0;
-            for (int i = 0; i <= n; i += n / 10)
+
+            for (float i = 0; j <= 100; i += n / 10)
             {
 
                 canvEuler.Children.Add(new Line                 // vonal racs fuggoleges
@@ -217,7 +218,7 @@ namespace Piff_Complett_v1
                 });
 
                 TextBlock testv = new TextBlock();
-                testv.Text = i.ToString() + "s";
+                testv.Text = Math.Round(i,2).ToString() + "s";
                 Canvas.SetLeft(testv, (int)Zoom * j + 53);
                 canvEuler.Children.Add(testv);
                 j += 10;

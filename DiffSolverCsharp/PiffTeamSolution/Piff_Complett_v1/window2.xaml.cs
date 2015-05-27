@@ -138,7 +138,9 @@ namespace Piff_Complett_v1
         {
             
           //  return -y + t + 1;
-            return -0.07f * (t - y);
+         //return -0.07f * (t - y);
+            //return -0.07f * (t - y);
+            return -0.07 * (y - 20); 
             //             return -k * (t - TR);  ezt kéne valahogy betenni newton cooling az output ból azt mondta kéri, outputba van jelmagyarázat
         }
         

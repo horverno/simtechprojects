@@ -229,6 +229,11 @@ namespace Piff_Complett_v1
             explicitRungeKutta(testfv);
         }
 
+        public float GetTime()
+        {
+            return endTime - startTime;
+        }
+       
         private void setDefault()
         {
             GetStep(0, 10, .01f);
