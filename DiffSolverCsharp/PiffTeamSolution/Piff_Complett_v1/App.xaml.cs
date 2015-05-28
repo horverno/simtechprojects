@@ -14,5 +14,8 @@ namespace Piff_Complett_v1
     public partial class App : Application
     {
         public static Piff_Complett_v1.MyMath myMath;
+
+        public static string kezdoEgyenlet;
+        public static string konvertaltEgyenlet;
     }
 }
