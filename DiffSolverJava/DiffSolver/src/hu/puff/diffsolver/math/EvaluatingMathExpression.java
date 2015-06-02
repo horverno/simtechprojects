@@ -4,24 +4,26 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
 public class EvaluatingMathExpression {
-	
-	public static float evaluating(String expression){
+
+	public static double evaluating(String expression) throws Exception {
 		ScriptEngineManager mgr = new ScriptEngineManager();
-	    ScriptEngine engine = mgr.getEngineByName("JavaScript");	 
-	    try {
-	    	Object result = engine.eval(expression);
-	    	if(result.getClass().equals(Integer.class)){
-	    		int i = (int)result;
-	    		return (float)i;
-	    	}
-	    	else if(result.getClass().equals(Double.class)){
-				double d = (double)result;
-				return (float)d;
-			}
-		} catch (Exception ex) {
-			System.err.println(ex.getMessage());
-		}	
-	    return 0f;
+		ScriptEngine engine = mgr.getEngineByName("JavaScript");
+
+		expression = expression.replaceAll("&&&","Math.sin");
+		expression = expression.replaceAll("@@@","Math.cos");
+		expression = expression.replaceAll("###","Math.tan");
+		
+		Object result = engine.eval(expression);
+		if(result.toString().equals("NaN"))
+			throw new DiffMathException("Error at evaluating.");
+		if (result.getClass().equals(Integer.class)) {
+			int i = (int) result;
+			return (double) i;
+		} else if (result.getClass().equals(Double.class)) {
+			return (double) result;
+		}
+		
+		return 0f;
 	}
-	
+
 }

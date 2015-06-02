@@ -1,6 +1,7 @@
 package hu.puff.diffsolver.output;
 
 import com.google.gson.Gson;
+import hu.puff.diffsolver.input.InputData;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -10,64 +11,62 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class JSONParser {
-	private static JSONParser mInstance;
 
-	private JSONParser() {
-	}
+    private static JSONParser mInstance;
 
-	public static JSONParser getInstance() {
-		if (null == mInstance) {
-			mInstance = new JSONParser();
-		}
-		return mInstance;
-	}
+    private JSONParser() {
+    }
 
-	public List<MeasurementItem> getDataFromJSON(File file) {
-		List<MeasurementItem> result = new ArrayList<>();
+    public static JSONParser getInstance() {
+        if (null == mInstance) {
+            mInstance = new JSONParser();
+        }
+        return mInstance;
+    }
 
-		Gson gson = new Gson();
+    public SaveFile getDataFromJSON(File file) {
+        SaveFile result = new SaveFile();
 
-		try {
+        Gson gson = new Gson();
 
-			BufferedReader br = new BufferedReader(new FileReader(file));
+        try {
 
-			// convert the json string back to object
-			MeasurementItem[] array = gson
-					.fromJson(br, MeasurementItem[].class);
+            BufferedReader br = new BufferedReader(new FileReader(file));
 
-			result = new ArrayList<>(Arrays.asList((MeasurementItem[]) array));
+            // convert the json string back to object
+            result = gson.fromJson(br, SaveFile.class);
 
-			System.out.println(result.toString());
+            System.out.println(result.toString());
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		return result;
-	}
+        return result;
+    }
 
-	public void dataToJSON(List<MeasurementItem> list, File file) {
-		Gson gson = new Gson();
+    public void dataToJSON(InputData data, List<MeasurementItem> list, File file) {
+        Gson gson = new Gson();
 
-		// convert java object to JSON format,
-		// and returned as JSON formatted string
-		String json = gson.toJson(list);
+        SaveFile saveFile = new SaveFile(data, list);
+        // convert java object to JSON format,
+        // and returned as JSON formatted string
+        String json = gson.toJson(saveFile);
 
-		try {
-			// write converted json data to a file named "file.json"
-			FileWriter writer = new FileWriter(file);
-			// FileWriter writer = new FileWriter(path);
-			writer.write(json);
-			writer.close();
+        try {
+            // write converted json data to a file named "file.json"
+            FileWriter writer = new FileWriter(file);
+            // FileWriter writer = new FileWriter(path);
+            writer.write(json);
+            writer.close();
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		System.out.println(json);
+        System.out.println(json);
 
-		//
-	}
+        //
+    }
 }

@@ -6,8 +6,9 @@ import javax.swing.*;
 import hu.puff.diffsolver.gui.MainPanel;
 import hu.puff.diffsolver.output.JSONParser;
 import hu.puff.diffsolver.output.MeasurementHandler;
-import hu.puff.diffsolver.output.MeasurementItem;
+import hu.puff.diffsolver.output.SaveFile;
 import java.io.File;
+import static java.util.Collections.list;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class DiffSolver extends JPanel {
@@ -45,7 +46,7 @@ public class DiffSolver extends JPanel {
 
     public JFrame createFrame() {
         JFrame frame = new JFrame();
-
+        frame.setResizable(false);
         frame.getContentPane().setLayout(new BorderLayout());
 
         WindowListener l = new WindowAdapter() {
@@ -135,7 +136,7 @@ public class DiffSolver extends JPanel {
                 if (rVal == JFileChooser.APPROVE_OPTION) {
 
                     JSONParser.getInstance().dataToJSON(
-                            MeasurementHandler.getInstance().getMathResult(), //getMathResult
+                            mPanel.getData(), MeasurementHandler.getInstance().getMathResult(), //getMathResult
                             saveFileChooser.getSelectedFile());
                 }
                 if (rVal == JFileChooser.CANCEL_OPTION) {
@@ -144,7 +145,7 @@ public class DiffSolver extends JPanel {
             }
             if (source.equals(loadMItem)) {
 // Loading JSON
-                java.util.List<MeasurementItem> list = null;
+                SaveFile saveFile = null;
 
                 FileNameExtensionFilter filter = new FileNameExtensionFilter(
                         "JSON file", "json");
@@ -156,15 +157,14 @@ public class DiffSolver extends JPanel {
 
                 int rVal = loadFileChooser.showOpenDialog(DiffSolver.this);
                 if (rVal == JFileChooser.APPROVE_OPTION) {
-                    list = JSONParser.getInstance()
+                    saveFile = JSONParser.getInstance()
                             .getDataFromJSON(loadFileChooser.getSelectedFile());
-                    System.out.println(list.toString());
                 }
                 if (rVal == JFileChooser.CANCEL_OPTION) {
                     System.out.println("Cancel");
                 }
-
-                mPanel.drawChart(list);
+                mPanel.setEnvironment(saveFile.getData());
+                mPanel.drawChart(saveFile.getList());
             }
             if (source.equals(colorMItem)) {
                 color = JColorChooser.showDialog(null, "Színválasztó", color);

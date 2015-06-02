@@ -1,7 +1,9 @@
 package hu.puff.diffsolver.gui;
 
+import hu.puff.diffsolver.output.MeasurementHandler;
 import hu.puff.diffsolver.output.MeasurementItem;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -24,11 +26,11 @@ import org.jfree.data.xy.XYSeriesCollection;
  */
 public class LineChart extends JFrame {
 
-    private JFreeChart chart = null;
+    private JFreeChart chart;
     private Color color;
     private int db;
     private String fileName;
-    private List<MeasurementItem> list;
+    private List<MeasurementItem> list = new ArrayList<MeasurementItem>();
 
     /**
      * Creates a new demo.
@@ -38,6 +40,7 @@ public class LineChart extends JFrame {
     public LineChart(final String title, List<MeasurementItem> asd) {
         super(title);
         list = asd;
+        MeasurementHandler.setmMeasurementList(list);
 
         final XYDataset dataset = createDataset();
         chart = createChart(dataset);
@@ -63,23 +66,13 @@ public class LineChart extends JFrame {
 
     private XYDataset createDataset() {
 
-        final XYSeries series1 = new XYSeries("First");
-
-        if (list == null) {
-            series1.add(1.0, 1.0);
-            series1.add(2.0, 4.0);
-            series1.add(3.0, 3.0);
-            series1.add(4.0, 5.0);
-            series1.add(5.0, 5.0);
-            series1.add(6.0, 7.0);
-            series1.add(7.0, 7.0);
-            series1.add(8.0, 8.0);
-
-        } else {
+        final XYSeries series1 = new XYSeries("");
+        if (list != null) {
             for (int i = 0; i < list.size(); i++) {
                 series1.add(list.get(i).timeStamp, list.get(i).value);
             }
         }
+
         final XYSeriesCollection dataset = new XYSeriesCollection();
         dataset.addSeries(series1);
 
@@ -98,7 +91,7 @@ public class LineChart extends JFrame {
 
         // create the chart...
         chart = ChartFactory.createXYLineChart(
-                "Line Chart Demo 6", // chart title
+                "Eredmény", // chart title
                 "X", // x axis label
                 "Y", // y axis label
                 dataset, // data
@@ -131,7 +124,7 @@ public class LineChart extends JFrame {
         // OPTIONAL CUSTOMISATION COMPLETED.
 
         plot.getRenderer().setSeriesPaint(0, color);
-        
+
         return chart;
 
     }

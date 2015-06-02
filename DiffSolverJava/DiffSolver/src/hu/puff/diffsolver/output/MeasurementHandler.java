@@ -20,7 +20,7 @@ public class MeasurementHandler {
 
 	private static final int DUMMY_COUNT = 10;
 
-	private List<MeasurementItem> mMeasurementList;
+	private static List<MeasurementItem> mMeasurementList;
 
 	public List<MeasurementItem> getMathResult() {
 		if (mMeasurementList == null) {
@@ -50,4 +50,8 @@ public class MeasurementHandler {
 		return resultStore;
 	}
 
+    public static void setmMeasurementList(List<MeasurementItem> mMeasurementList) {
+        MeasurementHandler.mMeasurementList = mMeasurementList;
+    }
+        
 }

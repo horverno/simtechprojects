@@ -8,7 +8,7 @@ package hu.puff.diffsolver.input;
  */
 public enum SolvMethod {
 
-    RUNGEKUTTA("RungeKutta"), RUNGEKUTTA4("RungeKutta4"), EULER("Euler"), IMPLICITEULER("Euler implicit");
+    MIDPOINT("MidPoint"), EULER("Euler"), RUNGEKUTTA3("RungeKutta3"),RUNGEKUTTA4("RungeKutta4");
 
     private final String method;
 

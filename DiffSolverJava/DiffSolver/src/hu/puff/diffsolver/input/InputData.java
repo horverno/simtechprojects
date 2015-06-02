@@ -10,13 +10,13 @@ package hu.puff.diffsolver.input;
 public class InputData {
 
     private String equations;
-    private Double x0, xmax, incr, ymin, ymax, card;
+    private Double x0, xmax, incr, ymin, ymax, card, startT;
 
     public InputData() {
 
     }
 
-    public InputData(String equations, Double x0, Double xmax, Double incr, Double ymin, Double ymax, Double card) {
+    public InputData(String equations, Double x0, Double xmax, Double incr, Double ymin, Double ymax, Double card, Double startT) {
         // egyenlet(ek), kezdő érték(ek) - pl.: y1+2.5,0.5 - vessző után van az egyenlet kezdő értéke
         this.equations = equations;
         // x tengely kezdő értéke
@@ -31,6 +31,8 @@ public class InputData {
         this.ymax = ymax;
         // számosság
         this.card = card;
+        // kezdő idő
+        this.startT = startT;
     }
 
     public String getEquations() {
@@ -89,4 +91,12 @@ public class InputData {
         this.card = card;
     }
 
+    public Double getStartT() {
+        return startT;
+    }
+
+    public void setStartT(Double startT) {
+        this.startT = startT;
+    }
+    
 }
