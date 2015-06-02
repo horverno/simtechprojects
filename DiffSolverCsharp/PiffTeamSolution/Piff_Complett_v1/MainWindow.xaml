@@ -7,8 +7,8 @@
         <GroupBox x:Name="Értékek_gb" Header="Értékek" HorizontalAlignment="Left" Height="85" Margin="10,231,0,0" VerticalAlignment="Top" Width="572"/>
         <GroupBox Header="Egyenlet" Height="188" HorizontalAlignment="Left" Margin="10,43,0,0" x:Name="groupBox3" VerticalAlignment="Top" Width="405" FontSize="11">
             <Grid Margin="0,0,0,0">
-                <TextBox Height="40" HorizontalAlignment="Left" Margin="10,15,0,0" x:Name="szamlalo1" VerticalAlignment="Top" Width="57" FontSize="20" FontFamily="Times New Roman" GotFocus="szamlalo1_GotFocus" VerticalContentAlignment="Center" TextChanged="szamlalo1_TextChanged" MaxLength="1" TabIndex="0" />
-                <TextBox Height="40" HorizontalAlignment="Left" Margin="142,15,0,0" x:Name="szamlalo2" VerticalAlignment="Top" Width="241" FontSize="20" FontFamily="Times New Roman" GotFocus="szamlalo2_GotFocus" VerticalContentAlignment="Center" TabIndex="1" />
+                <TextBox Height="40" HorizontalAlignment="Left" Margin="10,15,0,0" x:Name="szamlalo1" VerticalAlignment="Top" Width="57" FontSize="20" FontFamily="Times New Roman" GotFocus="szamlalo1_GotFocus" VerticalContentAlignment="Center" TextChanged="szamlalo1_TextChanged" MaxLength="3" TabIndex="0" IsInactiveSelectionHighlightEnabled="True" />
+                <TextBox Height="40" HorizontalAlignment="Left" Margin="142,15,0,0" x:Name="szamlalo2" VerticalAlignment="Top" Width="241" FontSize="20" FontFamily="Times New Roman" GotFocus="szamlalo2_GotFocus" VerticalContentAlignment="Center" TabIndex="1" TextChanged="szamlalo2_TextChanged" />
                 <Label Content="=" Margin="72,10,0,0" x:Name="Egyenlosegjel" FontFamily="Times New Roman" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="65" Height="45" VerticalAlignment="Top" />
                 <Rectangle Fill="Black" Height="2" HorizontalAlignment="Left" Margin="220,68,0,0" x:Name="osztas2" Stroke="Black" VerticalAlignment="Top" Visibility="Hidden" Width="140" />
                 <GroupBox Header="Különleges karakterek" Margin="7,75,0,0" x:Name="groupBox2" Height="91" VerticalAlignment="Top" FontSize="11" HorizontalAlignment="Left" Width="376">
@@ -47,8 +47,8 @@
                         <Button Content="Φ" Click="char1_Click" Width="20" Height="25"/>
                         <Button Content="Ψ" Click="char1_Click" Width="20" Height="25"/>
                         <Button Content="Ω" Click="char1_Click" Width="20" Height="25"/>
-                        <Button Content="Ẋ" Click="char1_Click" Width="20" Height="25"/>
-                        <Button Content="Ẍ" Click="char1_Click" Width="20" Height="25"/>
+                        <Button Content="Ẋ" Click="char1_Click" Width="20" Height="25" Background="Red"/>
+                        <Button Content="Ẍ" Click="char1_Click" Width="20" Height="25" Background="Red"/>
                     </ToolBarOverflowPanel>
                 </GroupBox>
             </Grid>

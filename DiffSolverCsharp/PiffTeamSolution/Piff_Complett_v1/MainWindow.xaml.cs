@@ -23,7 +23,11 @@ namespace Piff_Complett_v1
         public int modszer;
         public string modszertext;
         public string aktual;
-
+        public string fuggveny = "";
+        public string aktegyenlet = "";
+        public string aktvaltozo = "";
+        public Boolean newton = false;
+        public char valtozo = '\0';
         public MainWindow()
         {
             InitializeComponent();
@@ -74,7 +78,7 @@ namespace Piff_Complett_v1
 
             if (infocus != null)
             {
-                if ((infocus != szamlalo1) || (infocus == szamlalo1) && (szamlalo1.Text.Length != 1))
+                if ((infocus != szamlalo1) || (infocus == szamlalo1) && (szamlalo1.Text.Length < 2))
                 {
                     kari = infocus.CaretIndex;
                     first = infocus.Text.Substring(0, kari);
@@ -91,11 +95,13 @@ namespace Piff_Complett_v1
         private void szamlalo1_GotFocus(object sender, RoutedEventArgs e)
         {
             infocus = szamlalo1;
+            szamlalo1.CaretIndex = szamlalo1.Text.Length;
         }
 
         private void szamlalo2_GotFocus(object sender, RoutedEventArgs e)
         {
             infocus = szamlalo2;
+            szamlalo2.CaretIndex = szamlalo2.Text.Length;
         }
 
         private void rb1_Checked(object sender, RoutedEventArgs e)
@@ -203,12 +209,61 @@ namespace Piff_Complett_v1
 
         private void szamlalo1_TextChanged(object sender, TextChangedEventArgs e)
         {
-            szamlalo2.Focus();
+            string tartalom = szamlalo1.Text;
+            int hossz= szamlalo1.Text.Length;
+
+
+            szamlalo2.Text = "";
+            if (tartalom != "")
+            {
+                for (int i = 0; i < tartalom.Length; i++)
+                {
+                    if(char.IsLetter(tartalom[0])==true){
+
+                        if (tartalom[0] == '\u1e8c' || tartalom[0] == '\u1e8a')
+                        {
+                            if (tartalom.Length > 1)
+                            {
+                                szamlalo1.Text = aktvaltozo;
+                                szamlalo1.CaretIndex = aktvaltozo.Length;
+                                break;
+                            }
+                            newton = true;
+                            szamlalo2.Focus();
+                        }
+                        else
+                        {
+                            if ((tartalom.Length>1)&&(i!=0)){
+                                if (tartalom[i] != '\'')
+                                {
+                                    szamlalo1.Text = aktvaltozo;
+                                    szamlalo1.CaretIndex = aktvaltozo.Length;
+                                    break;
+                                }
+                            }
+                            newton = false;
+                        }
+                        
+                    }
+                    else{
+                        szamlalo1.Text=aktvaltozo;
+                        szamlalo1.CaretIndex = aktvaltozo.Length;
+                        break;
+                    }
+                }
+                if (szamlalo1.Text.Length == 3)
+                {
+                    szamlalo2.Focus();
+                }
+            }
+            aktvaltozo = szamlalo1.Text;
+           
         }
 
-
+                    
         private void step_TextChanged(object sender, TextChangedEventArgs e)
         {
+
             step.CaretIndex = step.Text.Length;
 
             if ((step.Text != "") && (step.Text != "0") && (step.Text != "0,") && (step.Text != "0,0"))
@@ -411,13 +466,8 @@ namespace Piff_Complett_v1
                 if
                 (Main.IsLoaded == true)
                 {
-
-
                     X_min.Text = (X_max_scrollbar.Value - 1).ToString();
-
                 }
-
-
             }
         }
 
@@ -437,8 +487,6 @@ namespace Piff_Complett_v1
                 {
                     X_max.Text = (X_min_scrollbar.Value + 1).ToString();
                 }
-
-
             }
         }
 
@@ -446,17 +494,15 @@ namespace Piff_Complett_v1
         {
             
             string uzenet="";
-            if (!inputell())
-            {
-                MessageBox.Show("Hiányos adatbevitel!");
-            }
-            else
+            if (vegsoellenorzes(szamlalo1.Text,szamlalo2.Text))
             {
                 uzenet = string.Format("{0}: {1}{2}{2}{3} {4}{2}{5} {6}{2}{2}{7} {8}{2}{2}{9} {10}{2}{2}{11}: {12}",groupBox3.Header.ToString(), szamlalo1.Text + "=" + szamlalo2.Text, Environment.NewLine,lblX_min.Content.ToString(), X_min_scrollbar.Value.ToString(), lblX_max.Content.ToString(),X_max_scrollbar.Value.ToString(),lblStep.Content.ToString(),Stepscrollbar.Value.ToString(),lblY_axis.Content.ToString(),Y_scrollbar.Value.ToString(),groupBox1.Header.ToString(),megoldo(modszer));
 
                 MessageBoxResult valasz = MessageBox.Show(uzenet, Main.Title, MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 if (valasz == MessageBoxResult.OK)
                 {
+                    //tesztfv(20,t);
+                    //MessageBox.Show(Evaluate(szamlalo2.Text).ToString());
                     //Készítette Cs J [Math team] 05.23
                     //mindenképp példányosítani kell különben null lenne
                     //argumentumok sorrendben: (double)start, (double)end, (double)start y, (double) lépés, füügvény, (int) módszer
@@ -469,12 +515,140 @@ namespace Piff_Complett_v1
         }
 
         //Készítette Cs J [Math team] 05.23
-        private float testfv(float t, float y)
+        private float tesztfv(float t, float y)
         {
+
             //  return -y + t + 1;
-            return -0.07f * (t - y);
+            return (float)0.07*(20-t);
             //             return -k * (t - TR);  ezt kéne valahogy betenni newton cooling az output ból azt mondta kéri, outputba van jelmagyarázat
         }
+
+        private float testfv(float t, float y)
+        {
+            string fuggveny = szamlalo2.Text;
+            string baloldal = szamlalo1.Text;
+            int hossz = fuggveny.Length;
+            string[] adatok=new string[10];
+            string szam="";
+            int aktual=0;
+            int i,eddig;
+            double elsoszam =0.0;
+            string zarojel="";
+            char elsovaltozo = '\0';
+
+            i = 0;
+            
+
+            while(i<hossz)
+            {
+                szam = "";
+                eddig=0;
+                if(char.IsLetter(fuggveny[i])==true){
+                    adatok[aktual] = fuggveny.Substring(i, 1);
+                    elsovaltozo = adatok[aktual][0];
+                    aktual++;
+                }
+                else if ((char.IsDigit(fuggveny[i]) == true)||fuggveny[i]=='-'||fuggveny[i]=='+')
+                {
+                    eddig=i;
+                    while ((eddig < hossz) && (char.IsDigit(fuggveny[eddig]) == true || fuggveny[eddig] == ','||fuggveny[eddig]=='-'||fuggveny[eddig]=='+'))
+                    {
+                        eddig++;
+                    }
+                   // i = eddig;
+                    for (int tol = i; tol <= eddig-1; tol++)
+                    {
+
+                        szam = szam + fuggveny.Substring(tol, 1);
+                    }
+                    adatok[aktual] = szam;
+                    aktual++;
+                    i = eddig-1;
+                }
+                else if (fuggveny[i] == '*' || fuggveny[i] == '/')
+                {
+                    adatok[aktual] = fuggveny.Substring(i, 1);
+                    aktual++;
+                }
+                else if (fuggveny[i] == '(')
+                {
+                    eddig=i;
+                    while ((eddig < hossz) && fuggveny[eddig] != ')'){
+                        eddig++;
+                    }
+                    for (int tol = i; tol <= eddig; tol++)
+                    {
+
+                        zarojel = zarojel + fuggveny.Substring(tol, 1);
+                    }
+                    adatok[aktual] = zarojel;
+                    aktual++;
+                    i = eddig - 1;
+                }
+                i++;
+
+            }
+            if(zarojel!=""){
+          
+            for(i=0;i<zarojel.Length;i++)
+            {
+                if ((char.IsLetter(zarojel[i])&&(i!=0)))
+                {
+
+
+                }
+                    
+            }
+                }
+          //  Evaluate(szamlalo2.Text);
+         //   i = 0;
+          /*  while (adatok[i] != "")
+            {
+                if (char.IsDigit(adatok[i][0]) || (adatok[i][0] == '+')|| (adatok[i][0] == '-'))
+                {
+                    elsoszam=Convert.ToDouble(adatok[0]);
+                }
+                
+                i++;
+            }
+           */
+
+
+
+            return (float)Convert.ToDouble(adatok[0])*(t-y) ;
+            //  return -y + t + 1;
+           // return -5f * (t - y);
+            //             return -k * (t - TR);  ezt kéne valahogy betenni newton cooling az output ból azt mondta kéri, outputba van jelmagyarázat
+        }
+
+        /*public float zarojelfeldolgozas(string input)
+        {
+            float f;
+            int valtozodb=0;
+            int muveletdb=0;
+            string elsoszam="";
+           // int konstansdb=0;
+            int szamdb=0;
+            for(int i=0;i<input.Length;i++){
+                if(char.IsLetter(input[i])==true){
+                    valtozodb++;
+                }
+                else if(char.IsDigit(input[i])==true){
+                    while(char.IsDigit(input[i])||input[i]==','){
+                        elsoszam=elsoszam+input.Substring(i,1);
+                        i++;
+                    }
+                    szamdb++;
+                }
+                else if((input[i]=='/')||(input[i]=='*')){
+                    muveletdb++;
+                }
+            }
+
+
+            return (float)f + (float)Convert.ToDouble(elsoszam)
+        }*/
+
 
         private string megoldo(int modszer)
         {
@@ -496,17 +670,358 @@ namespace Piff_Complett_v1
             }
             return text;
         }
-        private Boolean inputell()
-        {
-            Boolean ok;
-            if ((szamlalo1.Text != "") && (szamlalo2.Text != ""))
-            {
-                ok = true;
-            }
-            else ok = false;
+        
 
-            return ok;
+        public static double Evaluate(String input)
+        {
+        float a;
+        String expr = input.Substring(0,1) == "(" ? input : "(" + input + ")";
+        Stack<String> ops = new Stack<String>();
+        Stack<Double> vals = new Stack<Double>();
+
+        for (int i = 0; i < expr.Length; i++)
+        {
+            String s = expr.Substring(i, 1);
+            if (s.Equals("(")){}
+            else if (s.Equals(",")) ops.Push(s); //én
+            else if (s.Equals("+")) ops.Push(s);
+            else if (s.Equals("-")) ops.Push(s);
+            else if (s.Equals("*")) ops.Push(s);
+
+            else if (s.Equals("/")) ops.Push(s);
+            else if (s.Equals("sqrt")) ops.Push(s);
+            else if (s.Equals(")"))
+            {
+                int count = ops.Count;
+                while (count > 0)
+                {
+                    String op = ops.Pop();
+                    double v = vals.Pop();
+                    if (op.Equals("+")) v = vals.Pop() + v;
+                    else if (op.Equals("-")) v = vals.Pop() - v;
+                    else if (op.Equals(",")) v = vals.Pop() *(float)0.1*v;
+                    else if (op.Equals("*")) v = vals.Pop()*v;
+                    else if (op.Equals("/")) v = vals.Pop()/v;
+                    else if (op.Equals("sqrt")) v = Math.Sqrt(v);
+                    vals.Push(v);
+
+                    count--;
+                }
+            }
+            else if (char.IsLetter(s[0]))
+            {
+                
+            }
+            else vals.Push(Double.Parse(s));
         }
+        return vals.Pop();
+    }
+
+        public bool duplakarakterell(string input)
+        {
+            int hossz;
+            hossz = input.Length;
+            bool hibas=false;
+            
+            for (int i = 0; i < hossz; i++)
+                {
+                    if (input[i] == '\u1e8c')
+                    {
+                        hibas = true;
+                    }
+                }
+
+            if (hossz > 1)
+            {
+                for (int i = 0; i < hossz - 1; i++)
+                {
+                    if (input.Substring(i, 2)[0] == '+' || input.Substring(i, 2)[0] == '-' || input.Substring(i, 2)[0] == '*' || input.Substring(i, 2)[0] == '/')
+                    {
+                     
+
+                        if ((input.Substring(i, 2)[1] == '+' || input.Substring(i, 2)[1] == '-' || input.Substring(i, 2)[1] == '*' || input.Substring(i, 2)[1] == '/' || input.Substring(i, 2)[1] == '\'' || input.Substring(i, 2)[1] == ',' || input.Substring(i, 2)[1] == ')' ))
+                        {
+                            hibas = true;
+                            
+                            break;
+                        }
+                    }
+                    else if (input.Substring(i, 2)[0] == '(' )
+                    {
+                         if ((input.Substring(i, 2)[1] == '+' || input.Substring(i, 2)[1] == '*' || input.Substring(i, 2)[1] == '/' || input.Substring(i, 2)[1] == '\'' || input.Substring(i, 2)[1] == ',' || input.Substring(i, 2)[1] == '(' || input.Substring(i, 2)[1] == ')'))
+                        {
+                            hibas = true;
+                            
+                            break;
+                        }
+                    }
+                    else if (input.Substring(i, 2)[0] == ')')
+                    {
+                        
+                        if ((input.Substring(i, 2)[1] == '\'' || input.Substring(i, 2)[1] == ',' || input.Substring(i, 2)[1] == '('))
+                        {
+                            hibas = true;
+                            
+                            break;
+                        }
+                    }
+                    else if (input.Substring(i, 2)[0] == ',')
+                    {
+                        if(char.IsDigit(input.Substring(i, 2)[1])!=true){
+
+                             hibas = true;
+                             break;
+                        }
+                    }
+                    else if (input.Substring(i, 2)[0] == '\'')
+                    {
+
+                        if ((input.Substring(i, 2)[1] != '/') && (input.Substring(i, 2)[1] != '*') && (input.Substring(i, 2)[1] != '+') && (input.Substring(i, 2)[1] != '-'))
+                        {
+                            hibas = true;
+                            break;
+                        }
+
+                    }
+
+
+                    else if (char.IsLetter(input.Substring(i, 2)[0]) == true)
+                    {
+
+                        if (szamlalo1.Text.Length == 2)
+                        {
+                            if ((input.Substring(i, 2)[1] != '/') && (input.Substring(i, 2)[1] != '*') && (input.Substring(i, 2)[1] != '+') && (input.Substring(i, 2)[1] != '-') && (input.Substring(i, 2)[1] != ')'))
+                            {
+                                hibas = true;
+                                break;
+                            }
+
+                        }
+                        else
+                        {
+                            if ((input.Substring(i, 2)[1] != '\'') && (input.Substring(i, 2)[1] != '/') && (input.Substring(i, 2)[1] != '*') && (input.Substring(i, 2)[1] != '+') && (input.Substring(i, 2)[1] != '-') && (input.Substring(i, 2)[1] != ')'))
+                            {
+                                hibas = true;
+                                break;
+                            }
+
+                        }
+                    }
+                    else if (char.IsDigit(input.Substring(i, 2)[0]) == true)
+                    {
+                        if ((input.Substring(i, 2)[1] != '/') && (input.Substring(i, 2)[1] != ',') && (input.Substring(i, 2)[1] != ')') && (input.Substring(i, 2)[1] != '*') && (input.Substring(i, 2)[1] != '+') && (input.Substring(i, 2)[1] != '-') && char.IsDigit(input.Substring(i, 2)[1]) != true)
+                        {
+                            hibas = true;
+                            break;
+                        }
+                    }
+
+                }
+                return hibas;
+            }
+            else return hibas;
+        }
+        public bool vegsoellenorzes(string baloldal,string jobboldal)
+        {
+            bool ok = true;
+            int hossz = jobboldal.Length;
+            int zarojelek = 0;
+            int valtozodb = 0;
+            if ((szamlalo1.Text == "") || (szamlalo2.Text == ""))
+            {
+                ok = false;
+                MessageBox.Show("Hiányos adatbevitel!");
+            }
+            else
+            {
+                
+                for (int i = 0; i < hossz; i++)
+                {
+                    if (jobboldal[i] == '(')
+                    {
+                        zarojelek++;
+                    }
+                    if (jobboldal[i] == ')')
+                    {
+                        zarojelek--;
+                    }
+                    if (newton == true)
+                    {
+                        if ((jobboldal[i] == 'X') || (jobboldal[i] == '\u1e8c'))
+                        {
+                            valtozodb++;
+                        }
+                      
+                    }
+                    else
+                    {
+                        if (jobboldal[i] == valtozo)
+                        {
+                            valtozodb++;
+                        }
+                    }
+
+                }
+                if (newton == false)
+                {
+                    if (baloldal.Length == 1)
+                    {
+                        ok = false;
+                        MessageBox.Show("Az egyenlet bal oldala nem tartalmaz deriváltat!");
+                    }
+                }
+                if (zarojelek != 0)
+                {
+                    ok = false;
+                    MessageBox.Show("Beviteli hiba! Zárójel nincs bezárva!");
+                }
+                if (valtozodb == 0)
+                {
+                    ok = false;
+                    MessageBox.Show("Beviteli hiba! A derivált változó nem szerepel az egyenlet jobbb oldalában!");
+                }
+            }
+            return ok;
+
+        }
+
+        private void szamlalo2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string baloldal = szamlalo1.Text;
+            
+            string egyenlet = szamlalo2.Text;
+            //bool valtozo1=false;
+            int nyitozarojelek = 0;
+            int valtozo2=0;
+            int szamok=0;
+            int vesszok = 0;
+            if (newton == true)
+            {
+                valtozo = 'X';
+            }
+            if (szamlalo1.Text != "")
+            {
+                if (newton == false)
+                {
+                    valtozo = baloldal[0];
+                }
+                if (egyenlet != "")
+                {
+                    if((egyenlet[0]=='\'')||(egyenlet[0]=='*')||(egyenlet[0]=='/')||(egyenlet[0]=='+')||(egyenlet[0]==','))
+                    {
+                                    szamlalo2.Text = aktegyenlet;
+                                    szamlalo2.CaretIndex = aktegyenlet.Length;
+                    }
+                    else{
+
+                        for (int i = 0; i < egyenlet.Length; i++)
+                        {
+
+                            if ((char.IsLetterOrDigit(egyenlet[i]) == true) || egyenlet[i] == '+' || egyenlet[i] == '-' || egyenlet[i] == '/' || egyenlet[i] == '*' || egyenlet[i] == ',' || egyenlet[i] == '(' || egyenlet[i] == ')' || egyenlet[i] == '\'')
+                            {
+                                    if ((char.IsLetter(egyenlet[i]) == true)&&(egyenlet[i]!=valtozo))
+                                    {
+                                valtozo2++;
+                                if (valtozo2 > 1)
+                                {
+                                    szamlalo2.Text = aktegyenlet;
+                                    szamlalo2.CaretIndex = aktegyenlet.Length;
+                                    break;
+                                }
+                                if (newton == false && egyenlet[i] == '\u1e8a')
+                                {
+                                    szamlalo2.Text = aktegyenlet;
+                                    szamlalo2.CaretIndex = aktegyenlet.Length;
+                                    break;
+                                }
+                            }
+                            if (duplakarakterell(egyenlet) == true)
+                            {
+                                szamlalo2.Text = aktegyenlet;
+                                szamlalo2.CaretIndex = aktegyenlet.Length;
+                                break;
+                            }
+                            if (char.IsDigit(egyenlet[i]) == true)
+                            {
+                                szamok++;
+                                if (szamok > 4)
+                                {
+                                    szamlalo2.Text = aktegyenlet;
+                                    szamlalo2.CaretIndex = aktegyenlet.Length;
+                                    break;
+                                }
+                            }
+
+                            if (egyenlet[i] == ',')
+                            {
+                                vesszok++;
+                                if (vesszok > 1)
+                                {
+                                    szamlalo2.Text = aktegyenlet;
+                                    szamlalo2.CaretIndex = aktegyenlet.Length;
+                                    break;
+                                }
+                            }
+                            if (egyenlet[i] == '(')
+                            {
+                                nyitozarojelek++;
+                                if (nyitozarojelek > 1)
+                                {
+                                    szamlalo2.Text = aktegyenlet;
+                                    szamlalo2.CaretIndex = aktegyenlet.Length;
+                                    break;
+                                }
+                            }
+
+                            if (egyenlet[i] == ')')
+                            {
+                                if (nyitozarojelek == 0)
+                                {
+                                    szamlalo2.Text = aktegyenlet;
+                                    szamlalo2.CaretIndex = aktegyenlet.Length;
+                                    break;
+                                }
+                                else
+                                {
+                                    nyitozarojelek--;
+                                }
+                            }
+
+                            if (char.IsDigit(egyenlet[i]) == false)
+                            {
+
+                                szamok=0;
+                                if (egyenlet[i] != ',')
+                                {
+                                    vesszok = 0;
+                                }
+                            }
+                            
+                            
+                        }
+                        else
+                        {
+                            szamlalo2.Text = aktegyenlet;
+                            szamlalo2.CaretIndex = aktegyenlet.Length;
+                            break;
+
+                        }
+                    }
+
+                    }
+
+                }
+
+                aktegyenlet = szamlalo2.Text;
+                szamlalo2.CaretIndex = aktegyenlet.Length;
+
+            }
+            else
+            {
+                szamlalo2.Text = "";
+            }
+        }
+}
        
     }
-}
+

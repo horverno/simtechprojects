@@ -43,3 +43,18 @@ C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\P
 C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.g.resources
 C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.Properties.Resources.resources
 C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.csproj.GenerateResource.Cache
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.exe.config
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.exe
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.pdb
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.csprojResolveAssemblyReference.cache
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\MainWindow.baml
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\OutputWindow.baml
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\MainWindow.g.cs
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\OutputWindow.g.cs
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\App.g.cs
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1_MarkupCompile.cache
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.g.resources
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.Properties.Resources.resources
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.csproj.GenerateResource.Cache
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.exe
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.pdb
