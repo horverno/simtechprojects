@@ -49,6 +49,12 @@ namespace Piff_Complett_v1
             MessageBox.Show("X tömb hossza: " + xLength + Environment.NewLine +
                 "Y tömb hossza: " + yLength + Environment.NewLine +
                 "Lépés: " + lepes + Environment.NewLine + "Függvény: " + fgv);
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in xtomb)
+            {
+                sb.Append(item.ToString()).Append("   ");
+            }
+            MessageBox.Show(sb.ToString());
         }
 
         /// <param name="f">hulési függvény</param>
