@@ -233,6 +233,11 @@ namespace Piff_Complett_v1
         {
             return endTime - startTime;
         }
+        public float GetStart()
+        {
+            return startTime;
+        }
+
        
         private void setDefault()
         {
