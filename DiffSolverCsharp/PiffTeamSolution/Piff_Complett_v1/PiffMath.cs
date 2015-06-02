@@ -66,14 +66,17 @@ namespace Piff_Complett_v1
         {
             if (finish < start) throw new ArgumentException("Finish nem lehet nagyobb mint a start");
             if (interval <= 0) throw new ArgumentException("Az lépésköznek nagyobbnak kell lennie mint 0");
-
-            float[] xCoordinates = new float[(int)((finish - start) / interval) + 1];
+            
+            float resz1=((finish - start) / interval);
+            int resz2 = (int)resz1;
+            int eredmeny = resz2 + 1;
+            float[] xCoordinates = new float[eredmeny];
        //     int digits = 5;
             //interval = Math.Round(interval, 5);
 
             //float actual = start;
-            xCoordinates[0] = start;
-            for (int i = 0; i < xCoordinates.Length; ++i)
+            //xCoordinates[0] = start;
+            for (int i = 0; i < xCoordinates.Length; i++)
             {
                 xCoordinates[i] = interval * i + start;
      //           xCoordinates[i] = Math.Round(xCoordinates[i], digits);
