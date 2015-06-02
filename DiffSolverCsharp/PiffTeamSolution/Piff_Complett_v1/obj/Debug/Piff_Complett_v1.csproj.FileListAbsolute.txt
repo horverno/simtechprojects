@@ -1,0 +1,60 @@
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.exe.config
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.exe
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.pdb
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.csprojResolveAssemblyReference.cache
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\MainWindow.baml
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\OutputWindow.baml
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\MainWindow.g.cs
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\OutputWindow.g.cs
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\App.g.cs
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1_MarkupCompile.cache
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.g.resources
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.Properties.Resources.resources
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.csproj.GenerateResource.Cache
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.exe
+E:\prog\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.pdb
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.exe.config
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.exe
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.pdb
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.exe
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.pdb
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.csprojResolveAssemblyReference.cache
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\MainWindow.baml
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\OutputWindow.baml
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\MainWindow.g.cs
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\OutputWindow.g.cs
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\App.g.cs
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1_MarkupCompile.cache
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.g.resources
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.Properties.Resources.resources
+C:\Users\Ádám\Desktop\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.csproj.GenerateResource.Cache
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.exe.config
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.exe
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.pdb
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.exe
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.pdb
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.csprojResolveAssemblyReference.cache
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\MainWindow.baml
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\OutputWindow.baml
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\MainWindow.g.cs
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\OutputWindow.g.cs
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\App.g.cs
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1_MarkupCompile.cache
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.g.resources
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.Properties.Resources.resources
+C:\Users\János\Source\Repos\simtechprojects\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.csproj.GenerateResource.Cache
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.exe.config
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.exe
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.pdb
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.csprojResolveAssemblyReference.cache
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\MainWindow.baml
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\OutputWindow.baml
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\MainWindow.g.cs
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\OutputWindow.g.cs
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\App.g.cs
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1_MarkupCompile.cache
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.g.resources
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.Properties.Resources.resources
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\obj\Debug\Piff_Complett_v1.csproj.GenerateResource.Cache
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.exe
+d:\Robi\suli\szimulációs technikák\asd2\simtechprojects-master\DiffSolverCsharp\PiffTeamSolution\Piff_Complett_v1\bin\Debug\Piff_Complett_v1.pdb

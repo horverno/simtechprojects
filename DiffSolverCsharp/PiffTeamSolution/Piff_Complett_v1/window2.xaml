@@ -1,0 +1,33 @@
+﻿<Window x:Class="Piff_Complett_v1.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Differenciálegyenlet bevitele" Height="400" Width="600" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" Closing="Window_Closing">
+    <Grid>
+        <Button Content="Tovább" Height="30" HorizontalAlignment="Right" Margin="0,0,6,12" Name="Tovabbgomb" VerticalAlignment="Bottom" Width="80" Visibility="Visible" FontSize="16" Click="Tovabbgomb_Click" />
+        <Button Content="Vissza" Height="30" HorizontalAlignment="Left" Margin="406,0,0,12" Name="Back" VerticalAlignment="Bottom" Width="80" Visibility="Visible" FontSize="16" Click="Back_Click" />
+        <Button Content="Kilépés" FontSize="16" Height="30" HorizontalAlignment="Left" IsEnabled="True" Margin="6,0,0,12" Name="kilepes" VerticalAlignment="Bottom" Visibility="Visible" Width="80" Background="Red" Foreground="Black" Grid.Row="1" Click="kilepes_Click" />
+        <GroupBox Header="Egyenlet" Height="173" Name="groupBox1" VerticalAlignment="Top" FontFamily="Times New Roman" Margin="5,5,0,0" HorizontalAlignment="Left" Width="270">
+            <TextBlock Height="119" Name="textBlock1" Text="TextBlock" Width="253" FontFamily="Times New Roman" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" />
+        </GroupBox>
+        <GroupBox Header="Választott megoldási módszer" Name="groupBox2" FontFamily="Times New Roman" Margin="6,185,0,0" HorizontalAlignment="Left" Width="270" Height="122" VerticalAlignment="Top">
+            <TextBlock Height="46" HorizontalAlignment="Center" Name="textBlock2" Text="TextBlock" VerticalAlignment="Center" Width="251" FontFamily="Times New Roman" FontSize="24" />
+        </GroupBox>
+        
+        <GroupBox Header="Időértékek megadása" Height="302" HorizontalAlignment="Left" Margin="280,5,0,0" Name="groupBox3" VerticalAlignment="Top" Width="290" FontFamily="Times New Roman">
+            <Grid>
+                <Label Content="Kezdőidőpont" Height="30" Name="label1" Width="140" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,6,0,0" />
+            <Label Content="Végidőpont" Height="30" Margin="5,104,0,0" Name="label2" VerticalAlignment="Top" FontSize="14"  Width="76" HorizontalAlignment="Left" />
+            <Label Content="Lépésköz" Height="30" HorizontalAlignment="Left" Margin="5,184,0,0" Name="label3" VerticalAlignment="Top" FontSize="14" />
+            <Button Content="+" Height="25" Margin="104,28,0,0" Name="Kezdőplusz" VerticalAlignment="Top" Click="Kezdőplusz_Click" HorizontalAlignment="Left" Width="25" />
+            <Button Content="-" Height="25" HorizontalAlignment="Left" Margin="104,58,0,0" Name="Kezdőminusz" VerticalAlignment="Top" Width="25" Click="Kezdőminusz_Click" />
+            <Label Content="0" Height="55" HorizontalAlignment="Left" Margin="4,28,0,0" Name="Kezdo" VerticalAlignment="Top" Width="90" FontSize="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" />
+            <Label Content="1" Height="54" HorizontalAlignment="Left" Margin="5,118,0,0" Name="Veg" VerticalAlignment="Top" Width="90" FontSize="26" FontFamily="Times New Roman" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" />
+            <Label Content="0,5" Height="54" HorizontalAlignment="Left" Margin="5,208,0,0" Name="Lepes" VerticalAlignment="Top" Width="90" FontSize="26" FontFamily="Times New Roman" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" />
+            <Button Content="+" Height="25" HorizontalAlignment="Left" Margin="104,118,0,0" Name="Végplusz" VerticalAlignment="Top" Width="25" Click="Végplusz_Click" />
+            <Button Content="-" Height="25" HorizontalAlignment="Left" Margin="104,149,0,0" Name="Végminusz" VerticalAlignment="Top" Width="25" Click="Végminusz_Click" />
+            <Button Content="+" Height="25" HorizontalAlignment="Left" Margin="104,208,0,0" Name="Lépésplusz" VerticalAlignment="Top" Width="25" Click="Lépésplusz_Click" />
+            <Button Content="-" Height="25" HorizontalAlignment="Left" Margin="104,237,0,0" Name="Lépésminusz" VerticalAlignment="Top" Width="25" Click="Lépésminusz_Click" />
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
