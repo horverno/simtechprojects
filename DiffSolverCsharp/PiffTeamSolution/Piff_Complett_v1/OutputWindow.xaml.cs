@@ -19,9 +19,9 @@ namespace Piff_Complett_v1
     {
         static float[, ,] Coords = new float[3, 3, 3001]; // A lépéseket tartalmazó tömb - 1. fgv sorszam 2. x - y azonosító 3. x - y érték
 
-        const float T0 = 100f; // kezdőérték
-        const float TR = 20f; // külső hőmérséklet
-        const float k = 0.07f; // hűlési konstans
+        const float T0 = 100f; // kezdoérték
+        const float TR = 20f; // külso homérséklet
+        const float k = 0.07f; // hulési konstans
         readonly static float Zoom = 5;
         float n = (float)App.myMath.GetTime();                   // Y koordinata terjedelme (altalaban ido) 
         float start = (float)App.myMath.GetStart();                   // Y koordinata terjedelme (altalaban ido) 
@@ -32,12 +32,9 @@ namespace Piff_Complett_v1
         {
             InitializeComponent();
 
-            //készítette Cs J [Math team] 05.23
-            // X és Y Double tömb stb..
-            //App.myMath.X
-            //App.myMath.Y
-            //App.myMath.Step
             testAtadas();
+            TxDelta.Text = App.myMath.Step.ToString();
+            NewPlot();
         }
         //készítette Cs J [Math team] 05.23
         public void testAtadas()
@@ -54,41 +51,47 @@ namespace Piff_Complett_v1
                 "Lépés: " + lepes + Environment.NewLine + "Függvény: " + fgv);
         }
 
-        /*      public delegate float func(float t);
-              static float NewtonCooling(float t)
-              {
-                  return -k * (t - TR);
-              }
-              */
-        /// <param name="f">hűlési függvény</param>
+        /// <param name="f">hulési függvény</param>
         /// <param name="y">t0 értéke</param>
         /// <param name="n">db</param>
         /// <param name="h">dettaT</param>
         /// <param name="co">aktuális szín</param>
 
 
-        public void Masol(int co)
+        public void Masol(int co)    // kihagyja y 0 erteket 
         {
 
-            for (nr = 0; nr < App.myMath.X.Length; nr++)
+            for (nr = 0; nr < App.myMath.X.Length - 1; nr++)
             {
 
-                Coords[co, 0, nr] = App.myMath.X[nr];
-                Coords[co, 1, nr] = App.myMath.Y[nr];
+                Coords[co, 0, nr] = App.myMath.X[nr + 1];
+                Coords[co, 1, nr] = App.myMath.Y[nr + 1];
                 Coords[co, 2, nr] = nr;
 
-                System.Diagnostics.Debug.WriteLine("\t" + App.myMath.X[nr] + "\t" + App.myMath.Y[nr] + "\t" + nr);
+                System.Diagnostics.Debug.WriteLine("\t" + App.myMath.X[nr + 1] + "\t" + App.myMath.Y[nr + 1] + "\t" + nr);
 
             }
-
-
-
         }
+
+
+        /* public void Masol(int co)   // nem hagyja ki y 0 erteket
+         {
+
+             for (nr = 0; nr < App.myMath.X.Length; nr++)
+             {
+
+                 Coords[co, 0, nr] = App.myMath.X[nr];
+                 Coords[co, 1, nr] = App.myMath.Y[nr];
+                 Coords[co, 2, nr] = nr;
+
+                 System.Diagnostics.Debug.WriteLine("\t" + App.myMath.X[nr] + "\t" + App.myMath.Y[nr] + "\t" + nr);
+
+             }
+         }*/
 
 
         public void Draw()
         {
-            //  Coords[1, 0,] = xtomb;
             // co azt azonosítja hogy draw button katt esetén melyik szín jön most, it coord elso dimenzioja
             // isChecked: pipa kivétel esetén el kellene tünjön(mindet újra rajzolva kivéve disabled-et)
             float distance, min, max;
@@ -102,12 +105,12 @@ namespace Piff_Complett_v1
                     {
                         Stroke = System.Windows.Media.Brushes.DarkBlue,
                         StrokeThickness = 4,
-                        X1 = (int)Zoom * ((Coords[0, 0, x] / ((float)n / 100)) - (App.myMath.X.Length - 1) * start) + 50, // a 50 azért kell, hogy elférjen a skála
+                        X1 = (int)Zoom * ((Coords[0, 0, x] / ((float)n / 100)) - (100) * start / n) + 50, // a 50 azért kell, hogy elférjen a skála
                         Y1 = (int)Zoom * (100 - (Coords[0, 1, x] - min) / (distance / 100)) + 15,  // az osztas barmilyen intervallumot 100as skalahoz igazit, a kivonas pedig grafikon tetejehez igazitja
-                        X2 = (int)Zoom * ((Coords[0, 0, x] / ((float)n / 100) - (App.myMath.X.Length - 1) * start)) + 52, // a 50 azért kell, hogy elférjen a skála, a 2 pedig, hogy legyen kiterjedése a vonalnak
+                        X2 = (int)Zoom * ((Coords[0, 0, x] / ((float)n / 100) - (100) * start / n)) + 52, // a 50 azért kell, hogy elférjen a skála, a 2 pedig, hogy legyen kiterjedése a vonalnak
                         Y2 = (int)Zoom * (100 - (Coords[0, 1, x] - min) / (distance / 100)) + 17
                     });
-                    System.Diagnostics.Debug.WriteLine(" X1 " + ((Coords[0, 0, x] / ((float)n / 100)) - ((App.myMath.X.Length - 1) * start)) + " Y1 " + ((100 - (Coords[0, 1, x] - min) / (distance / 100))));
+                    System.Diagnostics.Debug.WriteLine(" X1 " + ((Coords[0, 0, x] / ((float)n / 100)) - (100) * start / n) + " Y1 " + ((100 - (Coords[0, 1, x] - min) / (distance / 100))) + " idoskala: " + n);
                 }
             }
             if (l2check.IsChecked == true)
@@ -118,9 +121,9 @@ namespace Piff_Complett_v1
                     {
                         Stroke = System.Windows.Media.Brushes.DarkGreen,
                         StrokeThickness = 4,
-                        X1 = (int)Zoom * Coords[1, 0, x] + 50,
-                        Y1 = (int)Zoom * (100 - (Coords[1, 1, x] - min) / (distance / 100)) + 15,
-                        X2 = (int)Zoom * Coords[1, 0, x] + 2 + 50,
+                        X1 = (int)Zoom * ((Coords[1, 0, x] / ((float)n / 100)) - (100) * start / n) + 50, // a 50 azért kell, hogy elférjen a skála
+                        Y1 = (int)Zoom * (100 - (Coords[1, 1, x] - min) / (distance / 100)) + 15,  // az osztas barmilyen intervallumot 100as skalahoz igazit, a kivonas pedig grafikon tetejehez igazitja
+                        X2 = (int)Zoom * ((Coords[1, 0, x] / ((float)n / 100) - (100) * start / n)) + 52, // a 50 azért kell, hogy elférjen a skála, a 2 pedig, hogy legyen kiterjedése a vonalnak
                         Y2 = (int)Zoom * (100 - (Coords[1, 1, x] - min) / (distance / 100)) + 17
                     });
                 }
@@ -133,9 +136,9 @@ namespace Piff_Complett_v1
                     {
                         Stroke = System.Windows.Media.Brushes.DarkRed,
                         StrokeThickness = 4,
-                        X1 = (int)Zoom * Coords[2, 0, x] + 50,
-                        Y1 = (int)Zoom * (100 - (Coords[2, 1, x] - min) / (distance / 100)) + 15,
-                        X2 = (int)Zoom * Coords[2, 0, x] + 2 + 50,
+                        X1 = (int)Zoom * ((Coords[2, 0, x] / ((float)n / 100)) - (100) * start / n) + 50, // a 50 azért kell, hogy elférjen a skála
+                        Y1 = (int)Zoom * (100 - (Coords[2, 1, x] - min) / (distance / 100)) + 15,  // az osztas barmilyen intervallumot 100as skalahoz igazit, a kivonas pedig grafikon tetejehez igazitja
+                        X2 = (int)Zoom * ((Coords[2, 0, x] / ((float)n / 100) - (100) * start / n)) + 52, // a 50 azért kell, hogy elférjen a skála, a 2 pedig, hogy legyen kiterjedése a vonalnak
                         Y2 = (int)Zoom * (100 - (Coords[2, 1, x] - min) / (distance / 100)) + 17
                     });
                 }
@@ -177,16 +180,14 @@ namespace Piff_Complett_v1
                     Y2 = j * 5 + 16,
                 });
                 TextBlock testc = new TextBlock();
-                //    if(j==0)testc.Text = " " + Math.Round(( min), 2) + "°C";
-                //    else if(j==100)testc.Text = " " + Math.Round(( max), 2) + "°C";
-                //     else 
+
                 testc.Text = " " + Math.Round((i), 2) + "°C";
 
                 Canvas.SetTop(testc, (int)Zoom * (100 - j));
                 canvEuler.Children.Add(testc);
                 System.Diagnostics.Debug.WriteLine(" j " + j + " i " + i);
                 j += 10;
-            }               // n
+            }
             j = 0;
 
             for (float i = 0; j <= 100; i += n / 10)
@@ -212,14 +213,19 @@ namespace Piff_Complett_v1
 
         private void DrawButton_Click(object sender, RoutedEventArgs e)
         {
+            App.myMath.Step = Convert.ToSingle(TxDelta.Text);
+            NewPlot();
+        }
+        private void NewPlot()
+        {
             try
             {
-                float delta = Convert.ToSingle(TxDelta.Text);
+
+                //App.myMath.Step = Convert.ToSingle(TxDelta.Text);
+
                 if (co == 2) co = -1; // ciklusvaltozo, a kirajzolt fgv azosítója >> színe
                 co++;
-                //     Console.WriteLine("x: " + Cursor.Position.X + " y: " + Cursor.Position.Y);
-                //         func f = new func(NewtonCooling);
-                //         Euler(f, T0, n, delta, co);
+
                 Masol(co);
                 if (co == 0) l1check.IsChecked = true;
                 if (co == 1) l2check.IsChecked = true;
@@ -300,5 +306,7 @@ namespace Piff_Complett_v1
         private void TxtSaveBox_TextChanged(object sender, TextChangedEventArgs e) { }
 
         private void PicSaveBox_TextChanged(object sender, TextChangedEventArgs e) { }
+
+
     }
 }
