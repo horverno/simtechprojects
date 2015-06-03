@@ -17,7 +17,7 @@ namespace Piff_Complett_v1
 {
     public partial class OutputWindow : Window
     {
-        static float[, ,] Coords = new float[3, 3, 3001]; // A lépéseket tartalmazó tömb - 1. fgv sorszam 2. x - y azonosító 3. x - y érték
+        static float[, ,] Coords = new float[3, 3, 30001]; // A lépéseket tartalmazó tömb - 1. fgv sorszam 2. x - y azonosító 3. x - y érték
 
         const float T0 = 100f; // kezdoérték
         const float TR = 20f; // külso homérséklet
@@ -287,6 +287,7 @@ namespace Piff_Complett_v1
             string PicName = PicSaveBox.Text;
             FileStream fs = File.Open(PicName, FileMode.OpenOrCreate);
             encoder.Save(fs);
+            fs.Close();
         }
         private void l1check_Checked(object sender, RoutedEventArgs e)
         {

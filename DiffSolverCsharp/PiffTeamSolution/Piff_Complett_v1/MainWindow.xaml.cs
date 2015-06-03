@@ -28,6 +28,7 @@ namespace Piff_Complett_v1
         public string aktvaltozo = "";
         public Boolean newton = false;
         public char valtozo = '\0';
+
         public MainWindow()
         {
             InitializeComponent();
@@ -209,59 +210,70 @@ namespace Piff_Complett_v1
 
         private void szamlalo1_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string tartalom = szamlalo1.Text;
-            int hossz= szamlalo1.Text.Length;
+            int hossz = szamlalo1.Text.Length;
 
 
             szamlalo2.Text = "";
-            if (tartalom != "")
+            if (szamlalo1.Text != "")
             {
-                for (int i = 0; i < tartalom.Length; i++)
-                {
-                    if (char.IsLetter(tartalom[0]) == true && tartalom[0]!='\u1e8c')
-                    {
 
-                        if (tartalom[0] == '\u1e8c' || tartalom[0] == '\u1e8a')
+
+                // for (int i = 0; i < tartalom.Length; i++)
+                // {
+                if (char.IsLetter(szamlalo1.Text[0]) == true && szamlalo1.Text[0] != '\u1e8c')
+                {
+
+                    if (szamlalo1.Text[0] == '\u1e8c' || szamlalo1.Text[0] == '\u1e8a')
+                    {
+                        if (szamlalo1.Text.Length > 1)
                         {
-                            if (tartalom.Length > 1)
+                            szamlalo1.Text = aktvaltozo;
+                            szamlalo1.CaretIndex = aktvaltozo.Length;
+                            //  break;
+                        }
+                        newton = true;
+                        szamlalo2.Focus();
+                    }
+                    else
+                    {
+                        if (szamlalo1.Text.Length == 1)
+                        {
+                            szamlalo1.Text = szamlalo1.Text + '\''.ToString();
+                        }
+
+                        if ((szamlalo1.Text.Length > 1))
+                        {
+                            if (szamlalo1.Text[1] != '\'')
                             {
                                 szamlalo1.Text = aktvaltozo;
                                 szamlalo1.CaretIndex = aktvaltozo.Length;
-                                break;
+                                // break;
                             }
-                            newton = true;
-                            szamlalo2.Focus();
+
+
                         }
-                        else
-                        {
-                            if ((tartalom.Length>1)&&(i!=0)){
-                                if (tartalom[i] != '\'')
-                                {
-                                    szamlalo1.Text = aktvaltozo;
-                                    szamlalo1.CaretIndex = aktvaltozo.Length;
-                                    break;
-                                }
-                            }
-                            newton = false;
-                        }
-                        
+
+                        newton = false;
                     }
-                    else{
-                        szamlalo1.Text=aktvaltozo;
-                        szamlalo1.CaretIndex = aktvaltozo.Length;
-                        break;
-                    }
+
                 }
+                else
+                {
+                    szamlalo1.Text = aktvaltozo;
+                    szamlalo1.CaretIndex = aktvaltozo.Length;
+                    //break;
+                }
+                //   }
                 if (szamlalo1.Text.Length == 2)
                 {
                     szamlalo2.Focus();
                 }
             }
             aktvaltozo = szamlalo1.Text;
-           
+
         }
 
-                    
+
         private void step_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -493,11 +505,11 @@ namespace Piff_Complett_v1
 
         private void Tovabbgomb_Click(object sender, RoutedEventArgs e)
         {
-            
-            string uzenet="";
-            if (vegsoellenorzes(szamlalo1.Text,szamlalo2.Text))
+
+            string uzenet = "";
+            if (vegsoellenorzes(szamlalo1.Text, szamlalo2.Text))
             {
-               // uzenet = string.Format("{0}: {1}{2}{2}{3} {4}{2}{5} {6}{2}{2}{7} {8}{2}{2}{9} {10}{2}{2}{11}: {12}",groupBox3.Header.ToString(), szamlalo1.Text + "=" + szamlalo2.Text, Environment.NewLine,lblX_min.Content.ToString(), X_min_scrollbar.Value.ToString(), lblX_max.Content.ToString(),X_max_scrollbar.Value.ToString(),lblStep.Content.ToString(),Stepscrollbar.Value.ToString(),lblY_axis.Content.ToString(),Y_scrollbar.Value.ToString(),groupBox1.Header.ToString(),megoldo(modszer));
+                uzenet = string.Format("{0}: {1}{2}{2}{3} {4}{2}{5} {6}{2}{2}{7} {8}{2}{2}{9} {10}{2}{2}{11}: {12}", groupBox3.Header.ToString(), szamlalo1.Text + "=" + szamlalo2.Text, Environment.NewLine, lblX_min.Content.ToString(), X_min_scrollbar.Value.ToString(), lblX_max.Content.ToString(), X_max_scrollbar.Value.ToString(), lblStep.Content.ToString(), Stepscrollbar.Value.ToString(), lblY_axis.Content.ToString(), Y_scrollbar.Value.ToString(), groupBox1.Header.ToString(), megoldo(modszer));
 
                 MessageBoxResult valasz = MessageBox.Show(uzenet, Main.Title, MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 if (valasz == MessageBoxResult.OK)
@@ -514,13 +526,13 @@ namespace Piff_Complett_v1
                 }
             }
         }
-        
+
         //Készítette Cs J [Math team] 05.23
         private float tesztfv(float t, float y)
         {
 
             //  return -y + t + 1;
-            return (float)0.07*(20-t);
+            return (float)0.07 * (20 - t);
             //             return -k * (t - TR);  ezt kéne valahogy betenni newton cooling az output ból azt mondta kéri, outputba van jelmagyarázat
         }
 
@@ -529,50 +541,56 @@ namespace Piff_Complett_v1
             string fuggveny = szamlalo2.Text;
             string baloldal = szamlalo1.Text;
             int hossz = fuggveny.Length;
-            string[] adatok=new string[20];
-            string szam="";
-            int aktual=0;
-            int i,eddig;
-            double elsoszam =0.0;
-            string zarojel="";
+            string[] adatok = new string[20];
+            string szam = "";
+            int aktual = 0;
+            int i, eddig;
+            float[] szamok = new float[3];
+            int szamdb = 0;
+            string zarojel = "";
             char elsovaltozo = '\0';
-            string muvelet="";
+            string[] muveletek = new string[3];
+            int muveletdb = 0;
             bool valtozonegativ = false;
             string zarojelenbeluliszam = "";
-            double zarojelenbelul = 0.0;
-            bool zarojelenbelulnegativ = false;
-            double masodikszam = 0.0;
-            double harmadikszam = 0.0;
-            string masodikmuvelet = "";
-            string harmadikmuvelet = "";
-            i = 0;
-            
+            float zarojelenbelul = 0;
+            int valtozohelye = 0;
+            float egyenlet = (100 - t) * t / 20;
 
-            while(i<hossz)
+            i = 0;
+
+
+            while (i < hossz)
             {
                 szam = "";
-                eddig=0;
-                if(char.IsLetter(fuggveny[i])==true){
+                eddig = 0;
+                if (char.IsLetter(fuggveny[i]) == true)
+                {
                     adatok[aktual] = fuggveny.Substring(i, 1);
                     elsovaltozo = adatok[aktual][0];
                     aktual++;
                 }
                 else if ((char.IsDigit(fuggveny[i]) == true))
                 {
-                    eddig=i;
+                    if ((i != 0) && (fuggveny[i - 1] == '-'))
+                    {
+                        szam = "-" + szam;
+                    }
+                    eddig = i;
                     while ((eddig < hossz) && (char.IsDigit(fuggveny[eddig]) == true || fuggveny[eddig] == ','))
                     {
                         eddig++;
                     }
-                   // i = eddig;
-                    for (int tol = i; tol <= eddig-1; tol++)
+                    // i = eddig;
+
+                    for (int tol = i; tol <= eddig - 1; tol++)
                     {
 
                         szam = szam + fuggveny.Substring(tol, 1);
                     }
                     adatok[aktual] = szam;
                     aktual++;
-                    i = eddig-1;
+                    i = eddig - 1;
                 }
                 else if (fuggveny[i] == '*' || fuggveny[i] == '/')
                 {
@@ -586,8 +604,9 @@ namespace Piff_Complett_v1
                 }
                 else if (fuggveny[i] == '(')
                 {
-                    eddig=i;
-                    while ((eddig < hossz) && fuggveny[eddig] != ')'){
+                    eddig = i;
+                    while ((eddig < hossz) && fuggveny[eddig] != ')')
+                    {
                         eddig++;
                     }
                     for (int tol = i; tol <= eddig; tol++)
@@ -602,13 +621,17 @@ namespace Piff_Complett_v1
                 i++;
 
             }
-            
-            i=0;
+
+            i = 0;
             while (adatok[i] != null)
             {
                 try
                 {
-                    elsoszam = Convert.ToDouble(adatok[i]);
+
+                    szamok[szamdb] = (float)Convert.ToDouble(adatok[i]);
+                    szamdb++;
+
+
                 }
                 catch
                 {
@@ -617,79 +640,382 @@ namespace Piff_Complett_v1
                         zarojel = adatok[i];
 
                     }
-                    else if ((adatok[i].Substring(0,1)=="+")||(adatok[i].Substring(0,1)=="-")||(adatok[i].Substring(0,1)=="/")||(adatok[i].Substring(0,1)=="*")){
-                        muvelet=adatok[i].Substring(0,1);
+                    else if ((adatok[i].Substring(0, 1) == "+") || (adatok[i].Substring(0, 1) == "-") || (adatok[i].Substring(0, 1) == "/") || (adatok[i].Substring(0, 1) == "*"))
+                    {
+                        muveletek[muveletdb] = adatok[i].Substring(0, 1);
+                        muveletdb++;
                     }
                 }
                 i++;
             }
-            for (i = 0; i < zarojel.Length; i++)
+            if (zarojel != "")
             {
-                if(char.IsLetter(zarojel[i])==true){
-                    if (zarojel[i - 1] == '-')
-                    {
-                        valtozonegativ = true;
-                    }
-                }
-                if (char.IsDigit(zarojel[i]) == true)
+                for (i = 0; i < zarojel.Length; i++)
                 {
-                    if (zarojel[i - 1] == '-')
+                    if (char.IsLetter(zarojel[i]) == true)
                     {
-                        zarojelenbelulnegativ = true;
+                        if (zarojel[i - 1] == '-')
+                        {
+                            valtozonegativ = true;
+                        }
                     }
-                    while (char.IsDigit(zarojel[i]) == true)
+                    if (char.IsDigit(zarojel[i]) || zarojel[i] == ',')
                     {
-                        zarojelenbeluliszam = zarojelenbeluliszam + zarojel.Substring(i, 1);
-                        i++;
+                        if (zarojel[i - 1] == '-')
+                        {
+                            zarojelenbeluliszam = "-" + zarojelenbeluliszam;
+                        }
+                        while (char.IsDigit(zarojel[i]) == true)
+                        {
+                            zarojelenbeluliszam = zarojelenbeluliszam + zarojel.Substring(i, 1);
+                            i++;
+                        }
+
+                        zarojelenbelul = (float)Convert.ToDouble(zarojelenbeluliszam);
                     }
-                    zarojelenbelul = Convert.ToDouble(zarojelenbeluliszam);
-                    if (zarojelenbelulnegativ == true)
-                    {
-                        zarojelenbelul=zarojelenbelul * (-1);
-                    }
+
                 }
 
+                if (muveletek[0] == "/")
+                {
+                    if (valtozonegativ == true)
+                    {
+                        egyenlet = szamok[0] / (-t + zarojelenbelul);
+                    }
+                    else egyenlet = szamok[0] / (t + zarojelenbelul);
+                }
+                else if (muveletek[0] == "*")
+                {
+                    if (valtozonegativ == true)
+                    {
+                        egyenlet = szamok[0] * (-t + zarojelenbelul);
+                    }
+                    else egyenlet = szamok[0] * (t + zarojelenbelul);
+                }
+                else if (muveletek[0] == "+")
+                {
+                    if (valtozonegativ == true)
+                    {
+                        egyenlet = szamok[0] + (-t + zarojelenbelul);
+                    }
+                    else egyenlet = szamok[0] + (t + zarojelenbelul);
+                }
+                else if (muveletek[0] == "-")
+                {
+                    if (valtozonegativ == true)
+                    {
+                        egyenlet = szamok[0] - (-t + zarojelenbelul);
+                    }
+                    else egyenlet = szamok[0] - (t + zarojelenbelul);
+                }
             }
+            else
+            {
+                i = 0;
+                while (adatok[i] != null)
+                {
+                    if (char.IsLetter(adatok[i][0]))
+                    {
+                        valtozohelye = i;
+                        break;
+                    }
+                    i++;
+                }
+                if (muveletdb == 2)
+                {
+                    if (valtozohelye == 0)
+                    {
+                        if (muveletek[0] == "+")
+                        {
+                            if (muveletek[1] == "+")
+                            {
+                                egyenlet = t + szamok[0] + szamok[1];
+                            }
+                            else if (muveletek[1] == "-")
+                            {
+                                egyenlet = t + szamok[0] - szamok[1];
+                            }
+                            else if (muveletek[1] == "*")
+                            {
+                                egyenlet = t + szamok[0] * szamok[1];
+                            }
+                            else if (muveletek[1] == "/")
+                            {
+                                egyenlet = t + szamok[0] / szamok[1];
+                            }
+                        }
+                        else if (muveletek[0] == "-")
+                        {
+                            if (muveletek[1] == "+")
+                            {
+                                egyenlet = t - szamok[0] + szamok[1];
+                            }
+                            else if (muveletek[1] == "-")
+                            {
+                                egyenlet = t - szamok[0] - szamok[1];
+                            }
+                            else if (muveletek[1] == "*")
+                            {
+                                egyenlet = t - szamok[0] * szamok[1];
+                            }
+                            else if (muveletek[1] == "/")
+                            {
+                                egyenlet = t - szamok[0] / szamok[1];
+                            }
+                        }
+                        else if (muveletek[0] == "*")
+                        {
+                            if (muveletek[1] == "+")
+                            {
+                                egyenlet = t * szamok[0] + szamok[1];
+                            }
+                            else if (muveletek[1] == "-")
+                            {
+                                egyenlet = t * szamok[0] - szamok[1];
+                            }
+                            else if (muveletek[1] == "*")
+                            {
+                                egyenlet = t * szamok[0] * szamok[1];
+                            }
+                            else if (muveletek[1] == "/")
+                            {
+                                egyenlet = t * szamok[0] / szamok[1];
+                            }
+                        }
+                        else if (muveletek[0] == "/")
+                        {
+                            if (muveletek[1] == "+")
+                            {
+                                egyenlet = t / szamok[0] + szamok[1];
+                            }
+                            else if (muveletek[1] == "-")
+                            {
+                                egyenlet = t / szamok[0] - szamok[1];
+                            }
+                            else if (muveletek[1] == "*")
+                            {
+                                egyenlet = t / szamok[0] * szamok[1];
+                            }
+                            else if (muveletek[1] == "/")
+                            {
+                                egyenlet = t / szamok[0] / szamok[1];
+                            }
+                        }
+                    }
+                    else if (valtozohelye == 2)
+                    {
+                        if (muveletek[0] == "+")
+                        {
+                            if (muveletek[1] == "+")
+                            {
+                                egyenlet = szamok[0] + t + szamok[1];
+                            }
+                            else if (muveletek[1] == "-")
+                            {
+                                egyenlet = szamok[0] + t - szamok[1];
+                            }
+                            else if (muveletek[1] == "*")
+                            {
+                                egyenlet = szamok[0] + t * szamok[1];
+                            }
+                            else if (muveletek[1] == "/")
+                            {
+                                egyenlet = szamok[0] + t / szamok[1];
+                            }
+                        }
+                        else if (muveletek[0] == "-")
+                        {
+                            if (muveletek[1] == "+")
+                            {
+                                egyenlet = szamok[0] - t + szamok[1];
+                            }
+                            else if (muveletek[1] == "-")
+                            {
+                                egyenlet = szamok[0] - t - szamok[1];
+                            }
+                            else if (muveletek[1] == "*")
+                            {
+                                egyenlet = szamok[0] - t * szamok[1];
+                            }
+                            else if (muveletek[1] == "/")
+                            {
+                                egyenlet = szamok[0] - t / szamok[1];
+                            }
+                        }
+                        else if (muveletek[0] == "*")
+                        {
+                            if (muveletek[1] == "+")
+                            {
+                                egyenlet = szamok[0] * t + szamok[1];
+                            }
+                            else if (muveletek[1] == "-")
+                            {
+                                egyenlet = szamok[0] * t - szamok[1];
+                            }
+                            else if (muveletek[1] == "*")
+                            {
+                                egyenlet = szamok[0] * t * szamok[1];
+                            }
+                            else if (muveletek[1] == "/")
+                            {
+                                egyenlet = szamok[0] * t / szamok[1];
+                            }
+                        }
+                        else if (muveletek[0] == "/")
+                        {
+                            if (muveletek[1] == "+")
+                            {
+                                egyenlet = szamok[0] / t + szamok[1];
+                            }
+                            else if (muveletek[1] == "-")
+                            {
+                                egyenlet = szamok[0] / t - szamok[1];
+                            }
+                            else if (muveletek[1] == "*")
+                            {
+                                egyenlet = szamok[0] / t * szamok[1];
+                            }
+                            else if (muveletek[1] == "/")
+                            {
+                                egyenlet = szamok[0] / t / szamok[1];
+                            }
+                        }
+                        else if (valtozohelye == 4)
+                        {
+                            if (muveletek[0] == "+")
+                            {
+                                if (muveletek[1] == "+")
+                                {
+                                    egyenlet = szamok[0] + szamok[1] + t;
+                                }
+                                else if (muveletek[1] == "-")
+                                {
+                                    egyenlet = szamok[0] + szamok[1] - t;
+                                }
+                                else if (muveletek[1] == "*")
+                                {
+                                    egyenlet = szamok[0] + szamok[1] * t;
+                                }
+                                else if (muveletek[1] == "/")
+                                {
+                                    egyenlet = szamok[0] + szamok[1] / t;
+                                }
+                            }
+                            else if (muveletek[0] == "-")
+                            {
+                                if (muveletek[1] == "+")
+                                {
+                                    egyenlet = szamok[0] - szamok[1] + t;
+                                }
+                                else if (muveletek[1] == "-")
+                                {
+                                    egyenlet = szamok[0] - szamok[1] - t;
+                                }
+                                else if (muveletek[1] == "*")
+                                {
+                                    egyenlet = szamok[0] - szamok[1] * t;
+                                }
+                                else if (muveletek[1] == "/")
+                                {
+                                    egyenlet = szamok[0] - szamok[1] / t;
+                                }
+                            }
+                            else if (muveletek[0] == "*")
+                            {
+                                if (muveletek[1] == "+")
+                                {
+                                    egyenlet = szamok[0] * szamok[1] + t;
+                                }
+                                else if (muveletek[1] == "-")
+                                {
+                                    egyenlet = szamok[0] * szamok[1] - t;
+                                }
+                                else if (muveletek[1] == "*")
+                                {
+                                    egyenlet = szamok[0] * szamok[1] * t;
+                                }
+                                else if (muveletek[1] == "/")
+                                {
+                                    egyenlet = szamok[0] * szamok[1] / t;
+                                }
+                            }
+                            else if (muveletek[0] == "/")
+                            {
+                                if (muveletek[1] == "+")
+                                {
+                                    egyenlet = szamok[0] / szamok[1] + t;
+                                }
+                                else if (muveletek[1] == "-")
+                                {
+                                    egyenlet = szamok[0] / szamok[1] - t;
+                                }
+                                else if (muveletek[1] == "*")
+                                {
+                                    egyenlet = szamok[0] / szamok[1] * t;
+                                }
+                                else if (muveletek[1] == "/")
+                                {
+                                    egyenlet = szamok[0] / szamok[1] / t;
+                                }
+                            }
+                        }
 
-            if (muvelet == "/")
-            {
-                if (valtozonegativ==true){
-                   return (float)elsoszam / (-t+(float)zarojelenbelul);
-                }
-                else return (float)elsoszam / (t + (float)zarojelenbelul);
-            }
-            else if (muvelet == "*")
-            {
-                if (valtozonegativ == true)
-                {
-                    return (float)elsoszam * (-t + (float)zarojelenbelul);
-                }
-                else return (float)elsoszam * (t + (float)zarojelenbelul);
-            }
-            else if (muvelet == "+")
-            {
-                if (valtozonegativ == true)
-                {
-                    return (float)elsoszam + (-t + (float)zarojelenbelul);
-                }
-                else return (float)elsoszam + (t + (float)zarojelenbelul);
-            }
-            else //(muvelet == "-")
-            {
-                if (valtozonegativ == true)
-                {
-                    return (float)elsoszam - (-t + (float)zarojelenbelul);
-                }
-                else return (float)elsoszam - (t + (float)zarojelenbelul);
-            }
-           
-          }
 
-    
+
+                    }
+                }
+                else if (muveletdb == 1)
+                {
+                    if (valtozohelye == 0)
+                    {
+                        if (muveletek[0] == "+")
+                        {
+                            egyenlet = t + szamok[0];
+                        }
+                        else if (muveletek[0] == "-")
+                        {
+                            egyenlet = t - szamok[0];
+                        }
+                        else if (muveletek[0] == "*")
+                        {
+                            egyenlet = t * szamok[0];
+                        }
+                        else if (muveletek[0] == "/")
+                        {
+                            egyenlet = t / szamok[0];
+                        }
+                    }
+
+                    else if (valtozohelye == 2)
+                    {
+                        if (muveletek[0] == "+")
+                        {
+                            egyenlet = szamok[0] + t;
+                        }
+                        else if (muveletek[0] == "-")
+                        {
+                            egyenlet = szamok[0] - t;
+                        }
+                        else if (muveletek[0] == "*")
+                        {
+                            egyenlet = szamok[0] * t;
+                        }
+                        else if (muveletek[0] == "/")
+                        {
+                            egyenlet = szamok[0] / t;
+                        }
+                    }
+                }
+            }
+            return egyenlet;
+
+
+
+        }
 
         private string megoldo(int modszer)
         {
-            string text="";
+            string text = "";
             switch (modszer)
             {
                 case 0:
@@ -707,21 +1033,23 @@ namespace Piff_Complett_v1
             }
             return text;
         }
-        
+
 
         public bool duplakarakterell(string input)
         {
             int hossz;
             hossz = input.Length;
-            bool hibas=false;
-            
+            bool hibas = false;
+
             for (int i = 0; i < hossz; i++)
+            {
+                if (input[i] == '\u1e8c')
                 {
-                    if (input[i] == '\u1e8c')
-                    {
-                        hibas = true;
-                    }
+                    hibas = true;
+                    MessageBox.Show("Nem megengedett karakter!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    break;
                 }
+            }
 
             if (hossz > 1)
             {
@@ -729,40 +1057,41 @@ namespace Piff_Complett_v1
                 {
                     if (input.Substring(i, 2)[0] == '+' || input.Substring(i, 2)[0] == '-' || input.Substring(i, 2)[0] == '*' || input.Substring(i, 2)[0] == '/')
                     {
-                     
 
-                        if ((input.Substring(i, 2)[1] == '+' || input.Substring(i, 2)[1] == '-' || input.Substring(i, 2)[1] == '*' || input.Substring(i, 2)[1] == '/' || input.Substring(i, 2)[1] == '\'' || input.Substring(i, 2)[1] == ',' || input.Substring(i, 2)[1] == ')' ))
+
+                        if ((input.Substring(i, 2)[1] == '+' || input.Substring(i, 2)[1] == '-' || input.Substring(i, 2)[1] == '*' || input.Substring(i, 2)[1] == '/' || input.Substring(i, 2)[1] == '\'' || input.Substring(i, 2)[1] == ',' || input.Substring(i, 2)[1] == ')'))
                         {
                             hibas = true;
-                            
+                            MessageBox.Show("Nem megengedett karakter! Műveleti jel után vagy szám, vagy a változó neve következhet!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
                             break;
                         }
                     }
-                    else if (input.Substring(i, 2)[0] == '(' )
+                    else if (input.Substring(i, 2)[0] == '(')
                     {
-                         if ((input.Substring(i, 2)[1] == '+' || input.Substring(i, 2)[1] == '*' || input.Substring(i, 2)[1] == '/' || input.Substring(i, 2)[1] == '\'' || input.Substring(i, 2)[1] == ',' || input.Substring(i, 2)[1] == '(' || input.Substring(i, 2)[1] == ')'))
+                        if ((input.Substring(i, 2)[1] == '+' || input.Substring(i, 2)[1] == '*' || input.Substring(i, 2)[1] == '/' || input.Substring(i, 2)[1] == '\'' || input.Substring(i, 2)[1] == ',' || input.Substring(i, 2)[1] == '(' || input.Substring(i, 2)[1] == ')'))
                         {
                             hibas = true;
-                            
+                            MessageBox.Show("Nem megengedett karakter zárójel után!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
                             break;
                         }
                     }
                     else if (input.Substring(i, 2)[0] == ')')
                     {
-                        
+
                         if ((input.Substring(i, 2)[1] == '\'' || input.Substring(i, 2)[1] == ',' || input.Substring(i, 2)[1] == '('))
                         {
                             hibas = true;
-                            
+                            MessageBox.Show("Nem megengedett karakter zárójel után!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
                             break;
                         }
                     }
                     else if (input.Substring(i, 2)[0] == ',')
                     {
-                        if(char.IsDigit(input.Substring(i, 2)[1])!=true){
+                        if (char.IsDigit(input.Substring(i, 2)[1]) != true)
+                        {
 
-                             hibas = true;
-                             break;
+                            hibas = true;
+                            break;
                         }
                     }
                     else if (input.Substring(i, 2)[0] == '\'')
@@ -770,6 +1099,7 @@ namespace Piff_Complett_v1
 
                         if ((input.Substring(i, 2)[1] != '/') && (input.Substring(i, 2)[1] != '*') && (input.Substring(i, 2)[1] != '+') && (input.Substring(i, 2)[1] != '-'))
                         {
+                            MessageBox.Show("Nem megengedett karakter! A változó után csak műveleti jelek következhetnek!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
                             hibas = true;
                             break;
                         }
@@ -784,6 +1114,7 @@ namespace Piff_Complett_v1
                         {
                             if ((input.Substring(i, 2)[1] != '/') && (input.Substring(i, 2)[1] != '*') && (input.Substring(i, 2)[1] != '+') && (input.Substring(i, 2)[1] != '-') && (input.Substring(i, 2)[1] != ')'))
                             {
+                                MessageBox.Show("Nem megengedett karakter! A változó után csak műveleti jelek következhetnek!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
                                 hibas = true;
                                 break;
                             }
@@ -793,6 +1124,7 @@ namespace Piff_Complett_v1
                         {
                             if ((input.Substring(i, 2)[1] != '\'') && (input.Substring(i, 2)[1] != '/') && (input.Substring(i, 2)[1] != '*') && (input.Substring(i, 2)[1] != '+') && (input.Substring(i, 2)[1] != '-') && (input.Substring(i, 2)[1] != ')'))
                             {
+                                MessageBox.Show("Nem megengedett karakter! A változó után csak műveleti jelek következhetnek!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
                                 hibas = true;
                                 break;
                             }
@@ -803,6 +1135,7 @@ namespace Piff_Complett_v1
                     {
                         if ((input.Substring(i, 2)[1] != '/') && (input.Substring(i, 2)[1] != ',') && (input.Substring(i, 2)[1] != ')') && (input.Substring(i, 2)[1] != '*') && (input.Substring(i, 2)[1] != '+') && (input.Substring(i, 2)[1] != '-') && char.IsDigit(input.Substring(i, 2)[1]) != true)
                         {
+                            MessageBox.Show("Nem megengedett karakter!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
                             hibas = true;
                             break;
                         }
@@ -813,7 +1146,7 @@ namespace Piff_Complett_v1
             }
             else return hibas;
         }
-        public bool vegsoellenorzes(string baloldal,string jobboldal)
+        public bool vegsoellenorzes(string baloldal, string jobboldal)
         {
             bool ok = true;
             int hossz = jobboldal.Length;
@@ -822,11 +1155,11 @@ namespace Piff_Complett_v1
             if ((szamlalo1.Text == "") || (szamlalo2.Text == ""))
             {
                 ok = false;
-                MessageBox.Show("Hiányos adatbevitel!");
+                MessageBox.Show("Hiányos adatbevitel!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                
+
                 for (int i = 0; i < hossz; i++)
                 {
                     if (jobboldal[i] == '(')
@@ -839,11 +1172,11 @@ namespace Piff_Complett_v1
                     }
                     if (newton == true)
                     {
-                        if ((jobboldal[i] == 'X') )
+                        if ((jobboldal[i] == 'X'))
                         {
                             valtozodb++;
                         }
-                      
+
                     }
                     else
                     {
@@ -859,18 +1192,18 @@ namespace Piff_Complett_v1
                     if (baloldal.Length == 1)
                     {
                         ok = false;
-                        MessageBox.Show("Az egyenlet bal oldala nem tartalmaz deriváltat!");
+                        MessageBox.Show("Az egyenlet bal oldala nem tartalmaz deriváltat!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 if (zarojelek != 0)
                 {
                     ok = false;
-                    MessageBox.Show("Beviteli hiba! Zárójel nincs bezárva!");
+                    MessageBox.Show("Beviteli hiba! Zárójel nincs bezárva!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 if (valtozodb == 0)
                 {
                     ok = false;
-                    MessageBox.Show("Beviteli hiba! A derivált változó nem szerepel az egyenlet jobbb oldalában!");
+                    MessageBox.Show("Beviteli hiba! A derivált változó nem szerepel az egyenlet jobbb oldalában!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             return ok;
@@ -880,12 +1213,12 @@ namespace Piff_Complett_v1
         private void szamlalo2_TextChanged(object sender, TextChangedEventArgs e)
         {
             string baloldal = szamlalo1.Text;
-            
+
             string egyenlet = szamlalo2.Text;
             //bool valtozo1=false;
             int nyitozarojelek = 0;
-            
-            int szamok=0;
+
+            int szamok = 0;
             int vesszok = 0;
             if (newton == true)
             {
@@ -899,103 +1232,111 @@ namespace Piff_Complett_v1
                 }
                 if (egyenlet != "")
                 {
-                    if((egyenlet[0]=='\'')||(egyenlet[0]=='*')||(egyenlet[0]=='/')||(egyenlet[0]=='+')||(egyenlet[0]==','))
+                    if ((egyenlet[0] == '\'') || (egyenlet[0] == '*') || (egyenlet[0] == '/') || (egyenlet[0] == '+') || (egyenlet[0] == ','))
                     {
-                                    szamlalo2.Text = aktegyenlet;
-                                    szamlalo2.CaretIndex = aktegyenlet.Length;
+                        szamlalo2.Text = aktegyenlet;
+                        szamlalo2.CaretIndex = aktegyenlet.Length;
                     }
-                    else{
+                    else
+                    {
 
                         for (int i = 0; i < egyenlet.Length; i++)
                         {
 
                             if ((char.IsLetterOrDigit(egyenlet[i]) == true) || egyenlet[i] == '+' || egyenlet[i] == '-' || egyenlet[i] == '/' || egyenlet[i] == '*' || egyenlet[i] == ',' || egyenlet[i] == '(' || egyenlet[i] == ')' || egyenlet[i] == '\'')
                             {
-                             if ((newton == false) &&(char.IsLetter(egyenlet[i]) == true)&&(egyenlet[i]!=valtozo))
-                                {                              
+                                if ((newton == false) && (char.IsLetter(egyenlet[i]) == true) && (egyenlet[i] != valtozo))
+                                {
+                                    MessageBox.Show("Az egyenletben csak egy változó szerepelhet", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
                                     szamlalo2.Text = aktegyenlet;
                                     szamlalo2.CaretIndex = aktegyenlet.Length;
                                     break;
                                 }
                                 if (newton == true && egyenlet[i] != 'X')
                                 {
+                                    MessageBox.Show("Newton féle egyenletmegadásban csak X szerepelhet!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
                                     szamlalo2.Text = aktegyenlet;
                                     szamlalo2.CaretIndex = aktegyenlet.Length;
                                     break;
                                 }
-                            
-                            if (duplakarakterell(egyenlet) == true)
+
+                                if (duplakarakterell(egyenlet) == true)
+                                {
+                                    szamlalo2.Text = aktegyenlet;
+                                    szamlalo2.CaretIndex = aktegyenlet.Length;
+                                    break;
+                                }
+                                if (char.IsDigit(egyenlet[i]) == true)
+                                {
+                                    szamok++;
+                                    if (szamok > 4)
+                                    {
+                                        MessageBox.Show("Egymás után legfeljebb 4 számjegy adható meg!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        szamlalo2.Text = aktegyenlet;
+                                        szamlalo2.CaretIndex = aktegyenlet.Length;
+                                        break;
+                                    }
+                                }
+
+                                if (egyenlet[i] == ',')
+                                {
+                                    vesszok++;
+                                    if (vesszok > 1)
+                                    {
+                                        MessageBox.Show("Egy szám csak egy tizedesvesszőt tartalmazhat!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        szamlalo2.Text = aktegyenlet;
+                                        szamlalo2.CaretIndex = aktegyenlet.Length;
+                                        break;
+                                    }
+                                }
+                                if (egyenlet[i] == '(')
+                                {
+                                    nyitozarojelek++;
+                                    if (nyitozarojelek > 1)
+                                    {
+                                        MessageBox.Show("Nem kezdhető új zárójel az előző bezárásáig!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        szamlalo2.Text = aktegyenlet;
+                                        szamlalo2.CaretIndex = aktegyenlet.Length;
+                                        break;
+                                    }
+                                }
+
+                                if (egyenlet[i] == ')')
+                                {
+                                    if (nyitozarojelek == 0)
+                                    {
+                                        MessageBox.Show("Nincs nyitott zárójel!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        szamlalo2.Text = aktegyenlet;
+                                        szamlalo2.CaretIndex = aktegyenlet.Length;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        nyitozarojelek--;
+                                    }
+                                }
+
+                                if (char.IsDigit(egyenlet[i]) == false)
+                                {
+
+                                    szamok = 0;
+                                    if (egyenlet[i] != ',')
+                                    {
+                                        vesszok = 0;
+                                    }
+                                }
+
+
+                            }
+                            else
                             {
+                                MessageBox.Show("Nem megengedett karakter!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
                                 szamlalo2.Text = aktegyenlet;
                                 szamlalo2.CaretIndex = aktegyenlet.Length;
                                 break;
-                            }
-                            if (char.IsDigit(egyenlet[i]) == true)
-                            {
-                                szamok++;
-                                if (szamok > 4)
-                                {
-                                    szamlalo2.Text = aktegyenlet;
-                                    szamlalo2.CaretIndex = aktegyenlet.Length;
-                                    break;
-                                }
-                            }
 
-                            if (egyenlet[i] == ',')
-                            {
-                                vesszok++;
-                                if (vesszok > 1)
-                                {
-                                    szamlalo2.Text = aktegyenlet;
-                                    szamlalo2.CaretIndex = aktegyenlet.Length;
-                                    break;
-                                }
                             }
-                            if (egyenlet[i] == '(')
-                            {
-                                nyitozarojelek++;
-                                if (nyitozarojelek > 1)
-                                {
-                                    szamlalo2.Text = aktegyenlet;
-                                    szamlalo2.CaretIndex = aktegyenlet.Length;
-                                    break;
-                                }
-                            }
-
-                            if (egyenlet[i] == ')')
-                            {
-                                if (nyitozarojelek == 0)
-                                {
-                                    szamlalo2.Text = aktegyenlet;
-                                    szamlalo2.CaretIndex = aktegyenlet.Length;
-                                    break;
-                                }
-                                else
-                                {
-                                    nyitozarojelek--;
-                                }
-                            }
-
-                            if (char.IsDigit(egyenlet[i]) == false)
-                            {
-
-                                szamok=0;
-                                if (egyenlet[i] != ',')
-                                {
-                                    vesszok = 0;
-                                }
-                            }
-                            
-                            
                         }
-                        else
-                        {
-                            szamlalo2.Text = aktegyenlet;
-                            szamlalo2.CaretIndex = aktegyenlet.Length;
-                            break;
-
-                        }
-                    }
 
                     }
 
@@ -1010,8 +1351,8 @@ namespace Piff_Complett_v1
                 szamlalo2.Text = "";
             }
         }
-        
-}
-       
+
     }
+
+}
 

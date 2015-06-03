@@ -121,6 +121,7 @@
         <TextBox x:Name="X_max" HorizontalAlignment="Left" Height="30" Margin="173,276,0,0" Text="1" VerticalAlignment="Top" Width="124" MaxLength="4" FontSize="20" BorderThickness="1,0,0,0" BorderBrush="Black" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" LostFocus="X_max_LostFocus" TextChanged="X_max_TextChanged" TabIndex="7"/>
         <Label Name="lblX_min" Content="Kezdőidőpont:" Margin="18,246,0,0" FontSize="14" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" BorderBrush="Black" BorderThickness="0"/>
         <TextBox x:Name="X_min" HorizontalAlignment="Left" Height="30" Margin="18,276,0,0" Text="0" VerticalAlignment="Top" Width="124" MaxLength="4" FontSize="20" BorderThickness="0" BorderBrush="Black" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" TextChanged="X_min_TextChanged" TabIndex="6"/>
+        <TextBlock HorizontalAlignment="Left" Margin="225,21,0,0" TextWrapping="Wrap" Text="pl. B'=5/(8+B)" VerticalAlignment="Top" Height="17" Width="82" Opacity="0.6"/>
 
     </Grid>
 </Window>
