@@ -32,7 +32,7 @@ namespace Piff_Complett_v1
         {
             InitializeComponent();
 
-            testAtadas();
+           // testAtadas();
             TxDelta.Text = App.myMath.Step.ToString();
             NewPlot();
         }
